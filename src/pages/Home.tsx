@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { usePageMeta } from '../hooks/usePageMeta'
 import SectionHeading from '../components/SectionHeading'
@@ -5,6 +6,15 @@ import ImagePlaceholder from '../components/ImagePlaceholder'
 import CtaBanner from '../components/CtaBanner'
 import { signatureMenus, formatPrice } from '../data/menu'
 import { store } from '../data/store'
+
+// 히어로 슬라이드 — 이미지 추가/교체 시 이 배열만 수정
+const heroSlides = [
+  { src: '/images/hero/exterior.jpg', alt: '백년가업 하늘땅 본점 외관' },
+  { src: '/images/hero/galbi-1.jpg', alt: '숯불 위 양념갈비' },
+  { src: '/images/hero/galbi-2.jpg', alt: '숯불 위 양념 소갈비' },
+]
+
+const SLIDE_INTERVAL = 5500 // ms
 
 const highlights = [
   {
@@ -48,19 +58,34 @@ export default function Home() {
     '진해 숯불갈비 전문점 백년가업 하늘땅 본점. 정육 기반의 원육 선별과 육가공 노하우로 완성한 숯불 양념갈비, 소갈비, 한우 불고기, 점심특선, 단체 예약과 선물세트를 만나보세요.',
   )
 
+  const [slide, setSlide] = useState(0)
+
+  // 히어로 자동 슬라이드 — 동작 줄이기 설정 시 자동 재생 없음
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const timer = setInterval(
+      () => setSlide((s) => (s + 1) % heroSlides.length),
+      SLIDE_INTERVAL,
+    )
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <>
       {/* Hero */}
       <section className="hero">
-        <div className="hero__bg" aria-hidden="true">
-          {/* 추후 public/images/hero.jpg 교체 시 자동 표시 */}
-          <img
-            src="/images/hero.jpg"
-            alt=""
-            onError={(e) => {
-              e.currentTarget.style.display = 'none'
-            }}
-          />
+        {/* 자동 슬라이더 — 매장 외관과 숯불갈비 실사진이 옆으로 흐름 */}
+        <div className="hero__slider" aria-hidden="true">
+          <div
+            className="hero__track"
+            style={{ transform: `translateX(-${slide * 100}%)` }}
+          >
+            {heroSlides.map((s) => (
+              <div className="hero__slide" key={s.src}>
+                <img src={s.src} alt={s.alt} />
+              </div>
+            ))}
+          </div>
         </div>
         {/* 세로쓰기 시그니처 — 전통 현판처럼 오른쪽에 세로로 흐르는 문구 */}
         <p className="hero__vertical" aria-hidden="true">
@@ -68,17 +93,17 @@ export default function Home() {
         </p>
         <div className="container hero__inner">
           <p className="hero__brand hero__stagger" style={{ '--d': '0ms' } as React.CSSProperties}>
-            百年家業 · 백년가업
+            百年家業 · 삼대째 이어온 정성
           </p>
           <h1 className="hero__title hero__stagger" style={{ '--d': '150ms' } as React.CSSProperties}>
-            정육에서 시작되는
+            삼대째 이어온 손맛,
             <br />
-            갈비의 품격
+            백년가업 하늘땅
           </h1>
           <p className="hero__sub hero__stagger" style={{ '--d': '300ms' } as React.CSSProperties}>
-            백년가업 하늘땅은 정육 기반의 원육 선별과 육가공 노하우로,{' '}
+            정육점에서 시작해 삼대째 이어온 고기에 대한 안목과 고집.{' '}
             <br className="br-desktop" />
-            가족 외식과 단체 모임에 어울리는 프리미엄 숯불갈비 다이닝을 완성합니다.
+            백년가업 하늘땅이 가족의 식탁 위에 정직한 숯불갈비 한 상을 올립니다.
           </p>
           <div className="hero__actions hero__stagger" style={{ '--d': '450ms' } as React.CSSProperties}>
             <Link to="/menu" className="btn btn--gold">
@@ -91,6 +116,19 @@ export default function Home() {
               오시는 길
             </Link>
           </div>
+        </div>
+        {/* 슬라이드 인디케이터 */}
+        <div className="hero__dots" role="tablist" aria-label="히어로 이미지 선택">
+          {heroSlides.map((s, i) => (
+            <button
+              key={s.src}
+              type="button"
+              className={`hero__dot ${i === slide ? 'is-active' : ''}`}
+              aria-label={`${i + 1}번째 이미지`}
+              aria-selected={i === slide}
+              onClick={() => setSlide(i)}
+            />
+          ))}
         </div>
         {/* 스크롤 인디케이터 — 아래로 흐르는 금색 선 */}
         <div className="hero__scroll" aria-hidden="true">
