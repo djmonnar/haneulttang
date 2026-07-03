@@ -87,7 +87,7 @@ export const menuItems: MenuItem[] = [
     id: 'rice',
     category: '식사류',
     name: '공기밥',
-    price: null,
+    price: 1000,
   },
   {
     id: 'gift-galbi-set',

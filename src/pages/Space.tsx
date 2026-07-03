@@ -37,7 +37,7 @@ const spaceCards = [
   },
   {
     title: '주차 안내',
-    desc: '매장 이용 고객을 위한 주차 공간을 안내해 드립니다. [주차 안내 입력 필요]',
+    desc: '매장 앞 전용 주차장을 이용하실 수 있습니다. 단체 방문 시에도 여유롭게 주차 가능합니다.',
     image: '/images/space/parking.jpg',
     label: '주차 또는 외관 사진 자리',
   },
