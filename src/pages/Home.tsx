@@ -62,19 +62,25 @@ export default function Home() {
             }}
           />
         </div>
+        {/* 세로쓰기 시그니처 — 전통 현판처럼 오른쪽에 세로로 흐르는 문구 */}
+        <p className="hero__vertical" aria-hidden="true">
+          숯불에 굽는 백년의 정성
+        </p>
         <div className="container hero__inner">
-          <p className="hero__brand">百年家業 · 백년가업</p>
-          <h1 className="hero__title">
+          <p className="hero__brand hero__stagger" style={{ '--d': '0ms' } as React.CSSProperties}>
+            百年家業 · 백년가업
+          </p>
+          <h1 className="hero__title hero__stagger" style={{ '--d': '150ms' } as React.CSSProperties}>
             정육에서 시작되는
             <br />
             갈비의 품격
           </h1>
-          <p className="hero__sub">
+          <p className="hero__sub hero__stagger" style={{ '--d': '300ms' } as React.CSSProperties}>
             백년가업 하늘땅은 정육 기반의 원육 선별과 육가공 노하우로,{' '}
             <br className="br-desktop" />
             가족 외식과 단체 모임에 어울리는 프리미엄 숯불갈비 다이닝을 완성합니다.
           </p>
-          <div className="hero__actions">
+          <div className="hero__actions hero__stagger" style={{ '--d': '450ms' } as React.CSSProperties}>
             <Link to="/menu" className="btn btn--gold">
               메뉴 보기
             </Link>
@@ -85,6 +91,10 @@ export default function Home() {
               오시는 길
             </Link>
           </div>
+        </div>
+        {/* 스크롤 인디케이터 — 아래로 흐르는 금색 선 */}
+        <div className="hero__scroll" aria-hidden="true">
+          SCROLL
         </div>
       </section>
 

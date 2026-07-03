@@ -3,6 +3,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import MobileBottomBar from './components/MobileBottomBar'
 import ScrollToTop from './components/ScrollToTop'
+import ScrollReveal from './components/ScrollReveal'
 import Home from './pages/Home'
 import Brand from './pages/Brand'
 import MenuPage from './pages/MenuPage'
@@ -19,6 +20,7 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <ScrollReveal />
       <Header />
       <main>
         <Routes>
