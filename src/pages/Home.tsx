@@ -18,18 +18,26 @@ const SLIDE_INTERVAL = 5500 // ms
 
 const highlights = [
   {
+    seal: '選',
+    sealLabel: '가릴 선',
     title: '좋은 고기를 고르는 안목',
     desc: '좋은 갈비는 원육에서 결정됩니다. 하늘땅은 고기를 보는 눈에 타협하지 않습니다.',
   },
   {
+    seal: '誠',
+    sealLabel: '정성 성',
     title: '손질과 숙성의 정성',
     desc: '부위의 결을 따라 정성껏 손질하고, 하늘땅만의 양념으로 숙성해 깊은 맛을 완성합니다.',
   },
   {
+    seal: '火',
+    sealLabel: '불 화',
     title: '숯불이 완성하는 맛',
     desc: '잘 피운 숯불 위에서 가장 맛있는 순간에 구워, 그대로 식탁에 올립니다.',
   },
   {
+    seal: '家',
+    sealLabel: '집 가',
     title: '가족이 편안한 자리',
     desc: '부모님과 아이, 소중한 손님까지. 누구와 함께 와도 편안한 공간을 준비했습니다.',
   },
@@ -148,7 +156,11 @@ export default function Home() {
             {highlights.map((h, i) => (
               <article className="highlight-card" key={h.title}>
                 <span className="highlight-card__num">{String(i + 1).padStart(2, '0')}</span>
+                <span className="highlight-card__seal" aria-label={h.sealLabel}>
+                  {h.seal}
+                </span>
                 <h3>{h.title}</h3>
+                <span className="highlight-card__divider" aria-hidden="true" />
                 <p>{h.desc}</p>
               </article>
             ))}

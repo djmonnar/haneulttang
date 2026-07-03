@@ -621,11 +621,36 @@ h4 {
 }
 
 .section-heading__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
   letter-spacing: 0.35em;
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--gold-dark);
   margin-bottom: 12px;
+}
+
+/* 라벨 양옆의 가는 금선 장식 */
+.section-heading__eyebrow::before,
+.section-heading__eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.section-heading__eyebrow::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.section-heading--left .section-heading__eyebrow {
+  justify-content: flex-start;
+}
+
+.section-heading--left .section-heading__eyebrow::before {
+  display: none;
 }
 
 .section-heading--dark .section-heading__eyebrow {
@@ -761,12 +786,24 @@ h4 {
    -------------------------------------------------------------------------- */
 
 .highlight-card {
-  background: #fffdf8;
-  border: 1px solid rgba(212, 175, 106, 0.35);
+  position: relative;
+  background: linear-gradient(165deg, #fffdf8 0%, #faf3e5 100%);
+  border: 1px solid rgba(212, 175, 106, 0.4);
   border-radius: var(--radius);
-  padding: 34px 26px;
+  padding: 38px 28px 34px;
   box-shadow: var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 안쪽 금선 — 이중 액자 */
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(212, 175, 106, 0.25);
+  border-radius: calc(var(--radius) - 5px);
+  pointer-events: none;
+  transition: border-color 0.4s ease;
 }
 
 .highlight-card:hover {
@@ -774,16 +811,56 @@ h4 {
   box-shadow: var(--shadow-strong);
 }
 
+.highlight-card:hover::before {
+  border-color: rgba(212, 175, 106, 0.6);
+}
+
 .highlight-card__num {
+  position: absolute;
+  top: 24px;
+  right: 26px;
   font-family: var(--serif);
-  font-size: 0.95rem;
-  color: var(--gold-dark);
+  font-size: 0.9rem;
+  color: rgba(184, 147, 78, 0.55);
   letter-spacing: 0.15em;
 }
 
+/* 낙관(전통 도장) 모티프 — 딥브라운 바탕에 금색 한자 */
+.highlight-card__seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 20px;
+  font-family: var(--serif);
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--gold);
+  background: linear-gradient(150deg, var(--deep-brown), var(--wine));
+  border-radius: 10px;
+  box-shadow:
+    0 4px 12px rgba(36, 23, 16, 0.28),
+    inset 0 0 0 1px rgba(212, 175, 106, 0.4);
+  transform: rotate(-3deg);
+  transition: transform 0.35s ease;
+}
+
+.highlight-card:hover .highlight-card__seal {
+  transform: rotate(0deg) scale(1.04);
+}
+
 .highlight-card h3 {
-  font-size: 1.12rem;
-  margin: 12px 0 12px;
+  font-size: 1.14rem;
+  margin: 0 0 14px;
+}
+
+.highlight-card__divider {
+  display: block;
+  width: 30px;
+  height: 1px;
+  margin-bottom: 14px;
+  background: linear-gradient(90deg, var(--gold), transparent);
 }
 
 .highlight-card p {
