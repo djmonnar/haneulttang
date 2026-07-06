@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import BrandSeal from './BrandSeal'
 import { store } from '../data/store'
 
 const navItems = [
@@ -34,8 +35,11 @@ export default function Header() {
     <header className={`header ${scrolled || open ? 'header--solid' : ''}`}>
       <div className="container header__inner">
         <Link to="/" className="header__logo" aria-label="백년가업 하늘땅 홈으로">
-          <span className="header__logo-top">백년가업</span>
-          <span className="header__logo-main">하늘땅</span>
+          <BrandSeal className="header__seal" />
+          <span className="header__logo-text">
+            <span className="header__logo-top">백년가업</span>
+            <span className="header__logo-main">하늘땅</span>
+          </span>
         </Link>
 
         <nav className="header__nav" aria-label="주 메뉴">

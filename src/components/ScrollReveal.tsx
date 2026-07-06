@@ -11,6 +11,8 @@ import { useLocation } from 'react-router-dom'
  */
 const SELECTOR = [
   '.section-heading',
+  '.interlude__inner',
+  '.parallax-band__inner',
   '.highlight-card',
   '.menu-card',
   '.space-preview__item',

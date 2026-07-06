@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import BrandSeal from './BrandSeal'
 import { store } from '../data/store'
 
 export default function Footer() {
@@ -6,6 +7,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__brand">
+          <BrandSeal className="footer__seal" />
           <p className="footer__logo">
             <span>백년가업</span> 하늘땅
           </p>

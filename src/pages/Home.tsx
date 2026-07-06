@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { usePageMeta } from '../hooks/usePageMeta'
+import BrandSeal from '../components/BrandSeal'
 import SectionHeading from '../components/SectionHeading'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import CtaBanner from '../components/CtaBanner'
@@ -144,6 +145,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Interlude — 브랜드 문장 하나로 쉬어가는 구간 */}
+      <section className="interlude">
+        <div className="container interlude__inner">
+          <BrandSeal className="interlude__seal" label="백년가업 낙관" />
+          <p className="interlude__line">
+            고기를 대하는 마음이
+            <br className="br-desktop" /> 삼대를 이었습니다
+          </p>
+          <p className="interlude__caption">百年家業 · 하늘땅</p>
+        </div>
+      </section>
+
       {/* Brand Highlight */}
       <section className="section">
         <div className="container">
@@ -165,6 +178,22 @@ export default function Home() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Parallax Band — 화면 가득 숯불 이미지 위로 콘텐츠가 흐르는 구간 */}
+      <section
+        className="parallax-band"
+        role="img"
+        aria-label="숯불 위에서 구워지는 양념갈비"
+      >
+        <div className="container parallax-band__inner">
+          <p className="parallax-band__eyebrow">CHARCOAL</p>
+          <p className="parallax-band__line">
+            잘 고른 고기와 잘 피운 숯불,
+            <br />
+            맛은 그 사이에서 완성됩니다
+          </p>
         </div>
       </section>
 
