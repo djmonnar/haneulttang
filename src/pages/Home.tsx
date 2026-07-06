@@ -83,18 +83,16 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="hero">
-        {/* 자동 슬라이더 — 매장 외관과 숯불갈비 실사진이 옆으로 흐름 */}
+        {/* 자동 슬라이더 — 이미지가 제자리에서 서서히 교체(크로스페이드) */}
         <div className="hero__slider" aria-hidden="true">
-          <div
-            className="hero__track"
-            style={{ transform: `translateX(-${slide * 100}%)` }}
-          >
-            {heroSlides.map((s) => (
-              <div className="hero__slide" key={s.src}>
-                <img src={s.src} alt={s.alt} />
-              </div>
-            ))}
-          </div>
+          {heroSlides.map((s, i) => (
+            <div
+              className={`hero__slide ${i === slide ? 'is-active' : ''}`}
+              key={s.src}
+            >
+              <img src={s.src} alt={s.alt} />
+            </div>
+          ))}
         </div>
         {/* 세로쓰기 시그니처 — 전통 현판처럼 오른쪽에 세로로 흐르는 문구 */}
         <p className="hero__vertical" aria-hidden="true">

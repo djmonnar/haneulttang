@@ -452,23 +452,25 @@ h4 {
   overflow: hidden;
 }
 
-.hero__track {
-  display: flex;
-  height: 100%;
-  transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
 }
 
-.hero__slide {
-  position: relative;
-  flex: 0 0 100%;
-  height: 100%;
+.hero__slide.is-active {
+  opacity: 1;
 }
 
 .hero__slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* 켄번즈 — 천천히 줌인되는 배경 */
+}
+
+/* 켄번즈 — 활성 슬라이드마다 천천히 줌인이 새로 시작 */
+.hero__slide.is-active img {
   animation: kenburns 20s ease-out both;
 }
 
