@@ -63,7 +63,10 @@ export default function Footer() {
       </div>
       <div className="footer__copy">
         <div className="container">
-          © {new Date().getFullYear()} {store.brandName}. All rights reserved.
+          <p>
+            © {new Date().getFullYear()} {store.brandName}. All rights reserved.
+          </p>
+          <p className="footer__credit">제작 : 짓마케팅 대표 서효승</p>
         </div>
       </div>
     </footer>
