@@ -1461,39 +1461,8 @@ h4 {
 }
 
 .greeting-page {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.35fr);
-  gap: clamp(32px, 5vw, 64px);
-  align-items: start;
-}
-
-.greeting-profile {
-  position: sticky;
-  top: calc(var(--header-h) + 92px);
-}
-
-.greeting-profile .img-frame {
-  box-shadow: var(--shadow-strong);
-}
-
-.greeting-profile__caption {
-  margin-top: 18px;
-  padding-left: 18px;
-  border-left: 3px solid var(--gold);
-}
-
-.greeting-profile__caption span {
-  display: block;
-  color: var(--text-soft);
-  font-size: 0.9rem;
-}
-
-.greeting-profile__caption strong {
-  display: block;
-  margin-top: 2px;
-  font-family: var(--serif);
-  font-size: 1.4rem;
-  color: var(--deep-brown);
+  max-width: 900px;
+  margin-inline: auto;
 }
 
 .greeting-letter {
@@ -1576,15 +1545,6 @@ h4 {
   }
   .subnav {
     position: static;
-  }
-  .greeting-page {
-    grid-template-columns: 1fr;
-  }
-  .greeting-profile {
-    position: static;
-    max-width: 360px;
-    margin-inline: auto;
-    width: 100%;
   }
 }
 

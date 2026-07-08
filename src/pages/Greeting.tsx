@@ -1,7 +1,6 @@
 import { usePageMeta } from '../hooks/usePageMeta'
 import PageHero from '../components/PageHero'
 import BrandSubnav from '../components/BrandSubnav'
-import ImagePlaceholder from '../components/ImagePlaceholder'
 import CtaBanner from '../components/CtaBanner'
 
 const greetingParagraphs = [
@@ -30,18 +29,6 @@ export default function Greeting() {
       <section className="section">
         <div className="container">
           <div className="greeting-page">
-            <aside className="greeting-profile">
-              <ImagePlaceholder
-                src="/images/brand/park-dongcheol.jpg"
-                label="박동철 대표 프로필 사진"
-                ratio="5 / 7"
-              />
-              <div className="greeting-profile__caption">
-                <span>백년가업 하늘땅 대표</span>
-                <strong>박동철</strong>
-              </div>
-            </aside>
-
             <article className="greeting-letter" aria-labelledby="greeting-title">
               <p className="greeting-letter__eyebrow">하늘땅을 찾아주시는 분들께</p>
               <h2 id="greeting-title">3대를 이어온 맛의 깊이, 새로워진 공간의 품격</h2>
