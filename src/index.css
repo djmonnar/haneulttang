@@ -21,7 +21,8 @@
   --serif: 'Noto Serif KR', 'Nanum Myeongjo', serif;
   --sans: 'Pretendard Variable', Pretendard, -apple-system, 'Segoe UI',
     'Malgun Gothic', sans-serif;
-  --hand: 'Nanum Pen Script', 'Noto Serif KR', cursive;
+  --letter: 'Gowun Batang', 'Noto Serif KR', serif;
+  --signature: 'Nanum Brush Script', 'Noto Serif KR', cursive;
 
   --header-h: 74px;
   --radius: 10px;
@@ -1521,10 +1522,12 @@ h4 {
 }
 
 .greeting-letter__eyebrow {
-  font-family: var(--hand);
-  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   color: var(--gold-dark);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .greeting-letter h2 {
@@ -1533,14 +1536,15 @@ h4 {
 }
 
 .greeting-letter__body {
-  font-family: var(--hand);
-  font-size: clamp(1.55rem, 2.4vw, 1.9rem);
-  line-height: 1.62;
-  color: #4a3427;
+  font-family: var(--letter);
+  font-size: clamp(1.06rem, 1.55vw, 1.22rem);
+  line-height: 2.05;
+  letter-spacing: 0.01em;
+  color: #46342a;
 }
 
 .greeting-letter__body p + p {
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 .greeting-letter__footer {
@@ -1557,8 +1561,8 @@ h4 {
 }
 
 .greeting-letter__signature {
-  font-family: var(--hand);
-  font-size: clamp(2.3rem, 5vw, 3.5rem);
+  font-family: var(--signature);
+  font-size: clamp(2.4rem, 4.5vw, 3.35rem);
   font-weight: 400;
   line-height: 1;
   color: var(--wine);
@@ -1597,7 +1601,8 @@ h4 {
     padding: 30px 22px;
   }
   .greeting-letter__body {
-    font-size: 1.45rem;
+    font-size: 1.04rem;
+    line-height: 1.9;
   }
 }
 
