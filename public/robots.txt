@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://haneulttang.vercel.app/sitemap.xml
+Sitemap: https://xn--wh1bu4c029b.com/sitemap.xml

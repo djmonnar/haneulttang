@@ -3,7 +3,7 @@
 진해 숯불갈비 전문점 "백년가업 하늘땅 본점"의 기업형 브랜드 사이트입니다.
 React + TypeScript + Vite 기반의 다중 페이지(SPA) 구조입니다.
 
-- **운영 주소**: https://haneulttang.vercel.app
+- **운영 주소**: https://하늘땅.com (`https://xn--wh1bu4c029b.com`)
 
 ## 실행
 
