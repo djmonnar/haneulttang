@@ -3,6 +3,7 @@ import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import CtaBanner from '../components/CtaBanner'
+import BrandSubnav from '../components/BrandSubnav'
 
 const philosophies = [
   {
@@ -55,6 +56,7 @@ export default function Brand() {
         title="하늘땅 이야기"
         description="정육에서 시작되는 숯불갈비의 품격, 백년가업 하늘땅"
       />
+      <BrandSubnav />
 
       {/* 브랜드 인사말 */}
       <section className="section">

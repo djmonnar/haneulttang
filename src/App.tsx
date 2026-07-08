@@ -6,6 +6,7 @@ import ScrollToTop from './components/ScrollToTop'
 import ScrollReveal from './components/ScrollReveal'
 import Home from './pages/Home'
 import Brand from './pages/Brand'
+import Greeting from './pages/Greeting'
 import MenuPage from './pages/MenuPage'
 import Space from './pages/Space'
 import Butchery from './pages/Butchery'
@@ -26,6 +27,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/brand" element={<Brand />} />
+          <Route path="/brand/greeting" element={<Greeting />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/space" element={<Space />} />
           <Route path="/butchery" element={<Butchery />} />
