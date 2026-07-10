@@ -54,6 +54,7 @@ export default function Footer() {
         <div className="container">
           <p>© {new Date().getFullYear()} {store.brandName}. All rights reserved.</p>
           <p>공식 홈페이지 하늘땅.com</p>
+          <p className="footer__credit">제작 : 짓마케팅 대표 서효승</p>
         </div>
       </div>
     </footer>
