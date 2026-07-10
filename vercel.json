@@ -2,6 +2,18 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "^haneulttang\\.vercel\\.app$"
+        }
+      ],
+      "destination": "https://xn--wh1bu4c029b.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -11,6 +23,18 @@
         }
       ],
       "destination": "https://xn--wh1bu4c029b.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "^www\\.xn--wh1bu4c029b\\.com$"
+        }
+      ],
+      "destination": "https://xn--wh1bu4c029b.com/",
       "permanent": true
     },
     {
