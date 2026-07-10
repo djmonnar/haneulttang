@@ -46,9 +46,8 @@ export default function Home() {
         <div className="container hero__inner">
           <p className="hero__eyebrow">백년가업 하늘땅 · 진해 본점</p>
           <h1 className="hero__title">
-            2대를 이어온 맛의 깊이,
-            <br />
-            새로워진 공간의 품격
+            <span>2대를 이어온 맛의 깊이,</span>
+            <span>새로워진 공간의 품격</span>
           </h1>
           <p className="hero__sub">
             엄선한 원육과 정성껏 만든 양념, 참숯의 깊은 향.
