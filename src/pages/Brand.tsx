@@ -29,7 +29,10 @@ export default function Brand() {
         <div className="container story-layout story-layout--brand">
           <figure className="story-visual">
             <img src="/images/hero/exterior.jpg" alt="새롭게 신축한 백년가업 하늘땅 본점 외관" width="1600" height="1067" />
-            <figcaption><span>2代</span> 손맛과 철학을 잇다</figcaption>
+            <figcaption>
+              <span>2대째</span>
+              <strong>부모님의 손맛과 철학을 이어갑니다</strong>
+            </figcaption>
           </figure>
           <div className="story-copy">
             <p className="section-kicker">TWO GENERATIONS</p>

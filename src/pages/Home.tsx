@@ -103,7 +103,10 @@ export default function Home() {
               height="1067"
               loading="lazy"
             />
-            <figcaption><span>2대째</span> 이어온 숯불갈비</figcaption>
+            <figcaption>
+              <span>2대째</span>
+              <strong>부모님의 손맛과 철학을 이어갑니다</strong>
+            </figcaption>
           </figure>
           <div className="story-copy">
             <p className="section-kicker">OUR STORY</p>

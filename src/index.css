@@ -171,8 +171,9 @@ main { min-height: 70vh; }
 .story-layout--brand { align-items: start; }
 .story-visual { position: relative; }
 .story-visual img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.story-visual figcaption { position: absolute; right: -20px; bottom: -24px; display: flex; align-items: center; gap: 13px; padding: 19px 24px; background: var(--wine); color: white; font-family: var(--serif); font-size: 14px; }
-.story-visual figcaption span { color: var(--gold); font-size: 22px; }
+.story-visual figcaption { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); color: var(--warm-brown); font-size: 13px; }
+.story-visual figcaption span { flex: 0 0 auto; padding-right: 16px; border-right: 1px solid var(--gold); color: var(--wine); font-size: 12px; font-weight: 800; }
+.story-visual figcaption strong { font-weight: 600; }
 .story-copy h2 { margin-top: 15px; font-family: var(--serif); font-size: 42px; font-weight: 600; line-height: 1.45; }
 .story-copy blockquote { margin: 30px 0; padding-left: 22px; border-left: 2px solid var(--gold); color: var(--wine); font-family: var(--serif); font-size: 19px; line-height: 1.8; }
 .story-copy > p:not(.section-kicker) { margin-top: 16px; color: #625850; font-size: 15px; }
@@ -526,7 +527,8 @@ main { min-height: 70vh; }
   .trust-item h2, .trust-item h3 { font-size: 15px; }
   .trust-item p { font-size: 12px; }
   .story-layout { gap: 50px; }
-  .story-visual figcaption { right: -5px; bottom: -22px; padding: 14px 17px; }
+  .story-visual figcaption { align-items: flex-start; gap: 12px; padding-block: 14px; }
+  .story-visual figcaption span { padding-right: 12px; }
   .story-copy h2, .space-feature__heading h2, .gift-feature h2, .reviews-heading h2, .brand-renewal__copy h2, .lunch-section h2, .butchery-foundation h2 { font-size: 31px; }
   .story-copy blockquote { font-size: 16px; }
   .signature-grid,
