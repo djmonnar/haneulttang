@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react'
+import { Menu, Phone, X } from 'lucide-react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import BrandSeal from './BrandSeal'
 import { store } from '../data/store'
 
 const navItems = [
   { to: '/brand', label: '하늘땅 이야기' },
-  { to: '/menu', label: '메뉴 안내' },
-  { to: '/space', label: '공간 안내' },
-  { to: '/butchery', label: '정육·육가공' },
+  { to: '/menu', label: '메뉴' },
+  { to: '/space', label: '공간' },
+  { to: '/standards', label: '하늘땅의 기준' },
   { to: '/gift', label: '선물세트' },
-  { to: '/reservation', label: '단체예약' },
-  { to: '/business', label: '브랜드 문의' },
   { to: '/location', label: '오시는 길' },
-]
+] as const
 
 export default function Header() {
   const [open, setOpen] = useState(false)
@@ -20,19 +19,21 @@ export default function Header() {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10)
+    const onScroll = () => setScrolled(window.scrollY > 16)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // 라우트 이동 시 모바일 메뉴 닫기
+  useEffect(() => setOpen(false), [pathname])
+
   useEffect(() => {
-    setOpen(false)
-  }, [pathname])
+    document.body.classList.toggle('nav-open', open)
+    return () => document.body.classList.remove('nav-open')
+  }, [open])
 
   return (
-    <header className={`header ${scrolled || open ? 'header--solid' : ''}`}>
+    <header className={`header ${scrolled || open || pathname !== '/' ? 'header--solid' : ''}`}>
       <div className="container header__inner">
         <Link to="/" className="header__logo" aria-label="백년가업 하늘땅 홈으로">
           <BrandSeal className="header__seal" />
@@ -60,7 +61,7 @@ export default function Header() {
         </nav>
 
         <div className="header__right">
-          <Link to="/reservation" className="btn btn--gold btn--sm header__cta">
+          <Link to="/reservation" className="btn btn--wine btn--sm header__cta">
             예약 문의
           </Link>
           <button
@@ -68,40 +69,43 @@ export default function Header() {
             className="header__burger"
             aria-label={open ? '메뉴 닫기' : '메뉴 열기'}
             aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
+            aria-controls="mobile-navigation"
+            onClick={() => setOpen((value) => !value)}
           >
-            <span className={`header__burger-bar ${open ? 'is-open' : ''}`} />
+            {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      {/* 모바일 드로어 */}
       <nav
+        id="mobile-navigation"
         className={`header__drawer ${open ? 'header__drawer--open' : ''}`}
         aria-label="모바일 메뉴"
         aria-hidden={!open}
       >
-        <ul>
-          {navItems.map((item) => (
-            <li key={item.to}>
-              <NavLink
-                to={item.to}
-                className={({ isActive }) =>
-                  isActive
-                    ? 'header__drawer-link header__drawer-link--active'
-                    : 'header__drawer-link'
-                }
-              >
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-          <li>
-            <a className="header__drawer-link" href={`tel:${store.phone}`}>
-              전화 예약
-            </a>
-          </li>
-        </ul>
+        <div className="container header__drawer-inner">
+          <ul>
+            {navItems.map((item) => (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  tabIndex={open ? 0 : -1}
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'header__drawer-link header__drawer-link--active'
+                      : 'header__drawer-link'
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+          <a className="header__drawer-call" href={store.telLink} tabIndex={open ? 0 : -1}>
+            <Phone aria-hidden="true" size={19} />
+            전화 예약 {store.phone}
+          </a>
+        </div>
       </nav>
     </header>
   )

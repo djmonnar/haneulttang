@@ -1,338 +1,274 @@
-import { useEffect, useState } from 'react'
+import {
+  ArrowRight,
+  CalendarCheck,
+  CarFront,
+  Check,
+  Clock3,
+  MapPin,
+  Phone,
+  Quote,
+  UsersRound,
+} from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { usePageMeta } from '../hooks/usePageMeta'
-import BrandSeal from '../components/BrandSeal'
+import BusinessStatus from '../components/BusinessStatus'
 import SectionHeading from '../components/SectionHeading'
-import ImagePlaceholder from '../components/ImagePlaceholder'
-import CtaBanner from '../components/CtaBanner'
-import { signatureMenus, formatPrice } from '../data/menu'
+import { usePageMeta } from '../hooks/usePageMeta'
+import { giftItems } from '../data/gifts'
+import { formatPrice, signatureMenus } from '../data/menu'
 import { store } from '../data/store'
-
-// 히어로 슬라이드 — 이미지 추가/교체 시 이 배열만 수정
-const heroSlides = [
-  { src: '/images/hero/exterior.jpg', alt: '백년가업 하늘땅 본점 외관' },
-  { src: '/images/hero/galbi-1.jpg', alt: '숯불 위 양념갈비' },
-  { src: '/images/hero/galbi-2.jpg', alt: '숯불 위 양념 소갈비' },
-]
-
-const SLIDE_INTERVAL = 5500 // ms
-
-const highlights = [
-  {
-    seal: '選',
-    sealLabel: '가릴 선',
-    title: '좋은 고기를 고르는 안목',
-    desc: '좋은 갈비는 원육에서 결정됩니다. 하늘땅은 고기를 보는 눈에 타협하지 않습니다.',
-  },
-  {
-    seal: '誠',
-    sealLabel: '정성 성',
-    title: '손질과 숙성의 정성',
-    desc: '부위의 결을 따라 정성껏 손질하고, 하늘땅만의 양념으로 숙성해 깊은 맛을 완성합니다.',
-  },
-  {
-    seal: '火',
-    sealLabel: '불 화',
-    title: '숯불이 완성하는 맛',
-    desc: '잘 피운 숯불 위에서 가장 맛있는 순간에 구워, 그대로 식탁에 올립니다.',
-  },
-  {
-    seal: '家',
-    sealLabel: '집 가',
-    title: '가족이 편안한 자리',
-    desc: '부모님과 아이, 소중한 손님까지. 누구와 함께 와도 편안한 공간을 준비했습니다.',
-  },
-]
-
-const processSteps = [
-  '원육 선별',
-  '손질',
-  '육가공',
-  '양념/숙성',
-  '숯불 조리',
-  '매장 제공',
-]
-
-const spaces = [
-  { title: '가족 외식', label: '가족 외식석 사진 자리', image: '/images/space/family.jpg' },
-  { title: '단체 회식', label: '단체석 사진 자리', image: '/images/space/group.jpg' },
-  { title: '부모님 모임', label: '부모님 모임 좌석 사진 자리', image: '/images/space/parents.jpg' },
-  { title: '프라이빗 룸', label: '프라이빗 룸 사진 자리', image: '/images/space/private-room.jpg' },
-  { title: '주차 안내', label: '주차장 사진 자리', image: '/images/space/parking.jpg' },
-]
+import {
+  brandStoryParagraphs,
+  reviewSummaries,
+  standards,
+  trustHighlights,
+  visitOccasions,
+} from '../data/content'
 
 export default function Home() {
   usePageMeta(
-    '백년가업 하늘땅 본점 | 진해 숯불갈비·돼지양념갈비',
-    '진해 숯불갈비 전문점 백년가업 하늘땅 본점. 정육 기반의 원육 선별과 육가공 노하우로 완성한 숯불 양념갈비, 소갈비, 한우 불고기, 점심특선, 단체 예약과 선물세트를 만나보세요.',
+    '백년가업 하늘땅 본점 | 진해 숯불 양념갈비',
+    '2대를 이어온 진해 숯불갈비 전문점 백년가업 하늘땅 본점. 숯불 양념 돼지갈비, 소갈비, 한우 불고기와 쾌적한 신축 매장, 단체석 및 전용 주차장을 만나보세요.',
+    '/',
   )
-
-  const [slide, setSlide] = useState(0)
-
-  // 히어로 자동 슬라이드 — 동작 줄이기 설정 시 자동 재생 없음
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const timer = setInterval(
-      () => setSlide((s) => (s + 1) % heroSlides.length),
-      SLIDE_INTERVAL,
-    )
-    return () => clearInterval(timer)
-  }, [])
 
   return (
     <>
-      {/* Hero */}
       <section className="hero">
-        {/* 자동 슬라이더 — 이미지가 제자리에서 서서히 교체(크로스페이드) */}
-        <div className="hero__slider" aria-hidden="true">
-          {heroSlides.map((s, i) => (
-            <div
-              className={`hero__slide ${i === slide ? 'is-active' : ''}`}
-              key={s.src}
-            >
-              <img src={s.src} alt={s.alt} />
-            </div>
-          ))}
-        </div>
-        {/* 세로쓰기 시그니처 — 전통 현판처럼 오른쪽에 세로로 흐르는 문구 */}
-        <p className="hero__vertical" aria-hidden="true">
-          숯불에 굽는 백년의 정성
-        </p>
+        <img
+          className="hero__image"
+          src="/images/hero/galbi-1.jpg"
+          alt="참숯 위에서 구워지는 하늘땅 양념 돼지갈비"
+          width="1600"
+          height="1067"
+          fetchPriority="high"
+        />
+        <div className="hero__veil" aria-hidden="true" />
         <div className="container hero__inner">
-          <p className="hero__brand hero__stagger" style={{ '--d': '0ms' } as React.CSSProperties}>
-            百年家業 · 삼대째 이어온 정성
-          </p>
-          <h1 className="hero__title hero__stagger" style={{ '--d': '150ms' } as React.CSSProperties}>
-            삼대째 이어온 손맛,
+          <p className="hero__eyebrow">백년가업 하늘땅 · 진해 본점</p>
+          <h1 className="hero__title">
+            2대를 이어온 맛의 깊이,
             <br />
-            백년가업 하늘땅
+            새로워진 공간의 품격
           </h1>
-          <p className="hero__sub hero__stagger" style={{ '--d': '300ms' } as React.CSSProperties}>
-            삼대째 이어온 고기에 대한 안목과 정성.{' '}
-            <br className="br-desktop" />
-            백년가업 하늘땅이 가족의 식탁 위에 정직한 숯불갈비 한 상을 올립니다.
+          <p className="hero__sub">
+            엄선한 원육과 정성껏 만든 양념, 참숯의 깊은 향.
+            <br className="br-desktop" /> 부모님의 손맛과 철학을 이어 변함없는 숯불구이의 기준을 지켜갑니다.
           </p>
-          <div className="hero__actions hero__stagger" style={{ '--d': '450ms' } as React.CSSProperties}>
-            <Link to="/menu" className="btn btn--gold">
-              메뉴 보기
+          <div className="hero__actions">
+            <Link to="/menu" className="btn btn--ivory">
+              메뉴 보기 <ArrowRight aria-hidden="true" size={18} />
             </Link>
-            <Link to="/reservation" className="btn btn--outline-light">
-              예약 문의
-            </Link>
+            <a href={store.telLink} className="btn btn--wine">
+              <Phone aria-hidden="true" size={18} /> 전화 예약
+            </a>
             <Link to="/location" className="btn btn--outline-light">
-              오시는 길
+              <MapPin aria-hidden="true" size={18} /> 오시는 길
             </Link>
           </div>
         </div>
-        {/* 슬라이드 인디케이터 */}
-        <div className="hero__dots" role="tablist" aria-label="히어로 이미지 선택">
-          {heroSlides.map((s, i) => (
-            <button
-              key={s.src}
-              type="button"
-              className={`hero__dot ${i === slide ? 'is-active' : ''}`}
-              aria-label={`${i + 1}번째 이미지`}
-              aria-selected={i === slide}
-              onClick={() => setSlide(i)}
-            />
-          ))}
-        </div>
-        {/* 스크롤 인디케이터 — 아래로 흐르는 금색 선 */}
-        <div className="hero__scroll" aria-hidden="true">
-          SCROLL
+        <div className="hero-info">
+          <div className="container hero-info__inner">
+            <BusinessStatus />
+            <dl className="hero-info__hours">
+              <div><dt>영업시간</dt><dd>매일 11:00-21:30</dd></div>
+              <div><dt>브레이크타임</dt><dd>15:00-17:00</dd></div>
+              <div><dt>라스트오더</dt><dd>20:00</dd></div>
+              <div><dt>주차</dt><dd>전용 주차장</dd></div>
+              <div><dt>전화</dt><dd><a href={store.telLink}>{store.phone}</a></dd></div>
+            </dl>
+          </div>
         </div>
       </section>
 
-      {/* Interlude — 브랜드 문장 하나로 쉬어가는 구간 */}
-      <section className="interlude">
-        <div className="container interlude__inner">
-          <BrandSeal className="interlude__seal" label="백년가업 낙관" />
-          <p className="interlude__line">
-            고기를 대하는 마음이
-            <br className="br-desktop" /> 삼대를 이었습니다
-          </p>
-          <p className="interlude__caption">百年家業 · 하늘땅</p>
-        </div>
-      </section>
-
-      {/* Brand Highlight */}
-      <section className="section">
+      <section className="trust-strip" aria-labelledby="trust-title">
         <div className="container">
-          <SectionHeading
-            eyebrow="BRAND"
-            title="하늘땅이 신뢰받는 이유"
-            description="정육에서 시작해 숯불로 완성하는, 백년가업 하늘땅의 네 가지 약속입니다."
-          />
-          <div className="grid grid--4">
-            {highlights.map((h, i) => (
-              <article className="highlight-card" key={h.title}>
-                <span className="highlight-card__num">{String(i + 1).padStart(2, '0')}</span>
-                <span className="highlight-card__seal" aria-label={h.sealLabel}>
-                  {h.seal}
-                </span>
-                <h3>{h.title}</h3>
-                <span className="highlight-card__divider" aria-hidden="true" />
-                <p>{h.desc}</p>
+          <p className="trust-strip__eyebrow" id="trust-title">한눈에 보는 하늘땅</p>
+          <div className="trust-strip__grid">
+            {trustHighlights.map((item, index) => (
+              <article className="trust-item" key={item.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <div><h2>{item.title}</h2><p>{item.description}</p></div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Parallax Band — 화면 가득 숯불 이미지 위로 콘텐츠가 흐르는 구간 */}
-      <section
-        className="parallax-band"
-        role="img"
-        aria-label="숯불 위에서 구워지는 양념갈비"
-      >
-        <div className="container parallax-band__inner">
-          <p className="parallax-band__eyebrow">CHARCOAL</p>
-          <p className="parallax-band__line">
-            잘 고른 고기와 잘 피운 숯불,
-            <br />
-            맛은 그 사이에서 완성됩니다
-          </p>
+      <section className="section story-section">
+        <div className="container story-layout">
+          <figure className="story-visual">
+            <img
+              src="/images/hero/exterior.jpg"
+              alt="산을 배경으로 새롭게 신축한 백년가업 하늘땅 본점 외관"
+              width="1600"
+              height="1067"
+              loading="lazy"
+            />
+            <figcaption><span>2대째</span> 이어온 숯불갈비</figcaption>
+          </figure>
+          <div className="story-copy">
+            <p className="section-kicker">OUR STORY</p>
+            <h2>한 끼의 맛이<br />가업이 되기까지</h2>
+            <blockquote>“2대를 이어온 손맛과 철학 위에,<br />새로워진 공간의 품격을 더했습니다.”</blockquote>
+            <p>{brandStoryParagraphs[0]}</p>
+            <p>{brandStoryParagraphs[1]}</p>
+            <Link className="text-link" to="/brand">
+              하늘땅 이야기 더 보기 <ArrowRight aria-hidden="true" size={17} />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Signature Menu Preview */}
-      <section className="section section--beige">
+      <section className="section section--ivory" id="signature-menu">
         <div className="container">
           <SectionHeading
             eyebrow="SIGNATURE"
-            title="하늘땅 대표 메뉴"
-            description="정성껏 손질한 원육에 깊은 양념, 숯불향으로 완성한 하늘땅의 시그니처입니다."
+            title="세 가지 시그니처"
+            description="오랜 시간 사랑받아 온 하늘땅의 숯불구이를 소개합니다."
           />
-          <div className="grid grid--4">
-            {signatureMenus.map((menu) => (
-              <article className="menu-card" key={menu.id}>
-                <ImagePlaceholder
-                  src={menu.image}
-                  label={menu.imageLabel ?? `${menu.name} 사진`}
-                  ratio="4 / 3"
-                />
-                <div className="menu-card__body">
-                  <h3>{menu.name}</h3>
-                  {menu.portion && <p className="menu-card__portion">{menu.portion}</p>}
-                  <p className="menu-card__price">{formatPrice(menu.price)}</p>
+          <div className="signature-grid">
+            {signatureMenus.map((menu, index) => (
+              <article className="signature-card" key={menu.id}>
+                <div className="signature-card__image">
+                  <img src={menu.image} alt={menu.imageLabel} width="1600" height="1067" loading="lazy" />
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                </div>
+                <div className="signature-card__body">
+                  <div className="signature-card__heading">
+                    <h3>{menu.name}</h3>
+                    <p>{formatPrice(menu.price)}</p>
+                  </div>
+                  <p className="signature-card__portion">{menu.portion}</p>
+                  <p>{menu.description}</p>
                 </div>
               </article>
             ))}
           </div>
           <div className="section__more">
-            <Link to="/menu" className="btn btn--brown">
-              전체 메뉴 보기
-            </Link>
+            <Link to="/menu" className="btn btn--brown">전체 메뉴 보기 <ArrowRight aria-hidden="true" size={18} /></Link>
           </div>
         </div>
       </section>
 
-      {/* Butchery Preview */}
-      <section className="section section--dark">
+      <section className="section standards-section">
         <div className="container">
           <SectionHeading
-            eyebrow="BUTCHERY"
-            title="하늘땅의 맛은 정육에서 시작됩니다"
-            description="정육점 운영 기반의 원육 이해와 자체 육가공 노하우가 하늘땅 갈비의 품질을 만듭니다."
-            onDark
+            eyebrow="OUR STANDARD"
+            title="하늘땅의 다섯 가지 기준"
+            description="원육부터 식탁 위의 작은 반찬까지, 변하지 않는 기준으로 준비합니다."
           />
-          <ol className="process">
-            {processSteps.map((step, i) => (
-              <li className="process__step" key={step}>
-                <span className="process__num">{i + 1}</span>
-                <span className="process__label">{step}</span>
-              </li>
+          <div className="standards-list">
+            {standards.map((item, index) => (
+              <Link className="standard-item" to="/standards" key={item.id}>
+                <img src={item.image.src} alt={item.image.alt} width="1600" height="1067" loading="lazy" />
+                <div className="standard-item__veil" aria-hidden="true" />
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <div><h3>{item.title}</h3><p>{item.description}</p></div>
+              </Link>
             ))}
-          </ol>
-          <div className="grid grid--2 butchery-preview__images">
-            <ImagePlaceholder
-              src="/images/butchery/showcase.jpg"
-              label="정육 쇼케이스 이미지 자리"
-              ratio="16 / 9"
-            />
-            <ImagePlaceholder
-              src="/images/butchery/processing.jpg"
-              label="육가공 이미지 자리"
-              ratio="16 / 9"
-            />
-          </div>
-          <div className="section__more">
-            <Link to="/butchery" className="btn btn--outline-gold">
-              정육·육가공 이야기 보기
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Space Preview */}
-      <section className="section">
+      <section className="section section--charcoal space-feature">
         <div className="container">
-          <SectionHeading
-            eyebrow="SPACE"
-            title="편안하게 머무는 공간"
-            description="가족 외식부터 단체 회식, 접대 자리까지. 모임의 성격에 맞는 공간을 준비했습니다."
-          />
-          <div className="space-preview">
-            {spaces.map((s) => (
-              <figure className="space-preview__item" key={s.title}>
-                <ImagePlaceholder src={s.image} label={s.label} ratio="1 / 1" />
-                <figcaption>{s.title}</figcaption>
-              </figure>
-            ))}
-          </div>
-          <div className="section__more">
-            <Link to="/space" className="btn btn--brown">
-              공간 안내 보기
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Reservation CTA */}
-      <CtaBanner
-        title="가족 모임과 단체 회식은 하늘땅에서"
-        description="전화 예약, 단체 문의, 카카오톡 문의로 편안하게 준비해 드립니다."
-      />
-
-      {/* Location Preview */}
-      <section className="section section--beige">
-        <div className="container">
-          <SectionHeading eyebrow="LOCATION" title="오시는 길" />
-          <div className="location-preview">
-            <div className="map-embed">
-              <iframe
-                src={store.mapEmbedUrl}
-                title="백년가업 하늘땅 본점 위치 지도"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
+          <div className="space-feature__heading">
+            <div>
+              <p className="section-kicker">NEW SPACE</p>
+              <h2>맛의 깊이는 그대로,<br />식사의 편안함은 한층 더</h2>
             </div>
-            <div className="location-preview__info">
-              <h3>{store.storeName}</h3>
-              <p className="location-preview__addr">{store.address}</p>
-              <ul className="location-preview__notes">
-                {store.directions.map((d) => (
-                  <li key={d}>{d}</li>
-                ))}
-              </ul>
-              <div className="location-preview__actions">
-                <a
-                  className="btn btn--brown btn--sm"
-                  href={store.naverMapUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  네이버지도 보기
-                </a>
-                <a
-                  className="btn btn--brown btn--sm"
-                  href={store.kakaoMapUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  카카오맵 보기
-                </a>
+            <p>새롭게 신축한 하늘땅 본점은 쾌적하고 위생적인 식사 환경과 현대적인 공조 시스템을 갖추었습니다.</p>
+          </div>
+          <div className="space-feature__media">
+            <img src="/images/space/main-hall.jpg" alt="현대적인 공조 시설을 갖춘 하늘땅 메인 홀" width="1600" height="1067" loading="lazy" />
+            <ul>
+              <li><Check aria-hidden="true" size={18} /> 새롭게 신축한 매장</li>
+              <li><Check aria-hidden="true" size={18} /> 쾌적하고 위생적인 식사 환경</li>
+              <li><Check aria-hidden="true" size={18} /> 현대적인 공조 시스템</li>
+              <li><UsersRound aria-hidden="true" size={18} /> 가족석 · 단체석 · 프라이빗 룸</li>
+              <li><CarFront aria-hidden="true" size={18} /> 전용 주차장</li>
+            </ul>
+          </div>
+          <div className="section__more section__more--left">
+            <Link to="/space" className="btn btn--ivory">공간 자세히 보기 <ArrowRight aria-hidden="true" size={18} /></Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section occasion-section">
+        <div className="container">
+          <SectionHeading
+            eyebrow="FOR YOUR MOMENT"
+            title="어떤 자리로 오시나요?"
+            description="모임의 성격에 맞는 편안한 자리를 준비해 드립니다."
+          />
+          <div className="occasion-grid">
+            {visitOccasions.map((item, index) => (
+              <article className="occasion-item" key={item.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <a href={store.telLink} aria-label={`${item.title} 전화 예약`}><Phone aria-hidden="true" size={17} /> 예약 문의</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="gift-feature">
+        <img src="/images/gift/yangnyeom-set.jpg" alt="정성껏 포장한 하늘땅 양념갈비 선물세트" width="1600" height="1067" loading="lazy" />
+        <div className="gift-feature__veil" aria-hidden="true" />
+        <div className="container gift-feature__inner">
+          <p className="section-kicker">GIFT SET</p>
+          <h2>하늘땅의 정성을<br />소중한 분께 전하세요</h2>
+          <ul>{giftItems.map((item) => <li key={item.id}>{item.name}<span>{item.id === 'corporate-gift' ? '대량 주문 문의' : '구성 상담'}</span></li>)}</ul>
+          <div className="gift-feature__actions">
+            <Link to="/gift" className="btn btn--ivory">선물세트 보기</Link>
+            <a href={store.telLink} className="btn btn--outline-light"><Phone aria-hidden="true" size={18} /> 전화 주문 문의</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section reviews-section">
+        <div className="container reviews-layout">
+          <div className="reviews-heading">
+            <p className="section-kicker">GUEST VOICES</p>
+            <h2>다녀가신 분들이<br />기억하는 하늘땅</h2>
+            <p>방문 후기에서 자주 전해지는 이야기를 짧게 정리했습니다.</p>
+            {store.naverReviewUrl ? (
+              <a className="text-link" href={store.naverReviewUrl} target="_blank" rel="noreferrer">네이버에서 더 많은 후기 보기 <ArrowRight aria-hidden="true" size={17} /></a>
+            ) : (
+              <span className="text-link text-link--disabled" aria-disabled="true">네이버 후기 링크 준비 중</span>
+            )}
+          </div>
+          <div className="review-list">
+            {reviewSummaries.map((review) => (
+              <blockquote key={review}><Quote aria-hidden="true" size={21} /><p>{review}</p></blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--ivory">
+        <div className="container">
+          <SectionHeading eyebrow="LOCATION" title="오시는 길" description="진해 경화동, 스타벅스와 탑텐 사이에서 우회전하세요." />
+          <div className="location-home">
+            <div className="map-embed">
+              <iframe src={store.mapEmbedUrl} title="백년가업 하늘땅 본점 위치 지도" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+            </div>
+            <div className="location-home__info">
+              <p className="location-home__eyebrow">{store.storeName}</p>
+              <h2>{store.address}</h2>
+              <p>{store.lotAddress}</p>
+              <dl>
+                <div><dt><Clock3 aria-hidden="true" size={18} /> 영업</dt><dd>매일 11:00-21:30<br />브레이크타임 15:00-17:00<br />라스트오더 20:00</dd></div>
+                <div><dt><CarFront aria-hidden="true" size={18} /> 주차</dt><dd>{store.parking}</dd></div>
+                <div><dt><CalendarCheck aria-hidden="true" size={18} /> 안내</dt><dd>{store.visitNote}</dd></div>
+              </dl>
+              <div className="location-home__actions">
+                <a href={store.naverMapUrl} target="_blank" rel="noreferrer" className="btn btn--brown">네이버지도</a>
+                <a href={store.kakaoMapUrl} target="_blank" rel="noreferrer" className="btn btn--outline-brown">카카오맵</a>
+                <a href={store.telLink} className="btn btn--wine"><Phone aria-hidden="true" size={18} /> 전화하기</a>
               </div>
             </div>
           </div>

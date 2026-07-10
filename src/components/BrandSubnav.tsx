@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 const brandLinks = [
   { to: '/brand', label: '브랜드 소개', end: true },
-  { to: '/brand/greeting', label: '인삿말' },
+  { to: '/brand/greeting', label: '인사말' },
 ]
 
 export default function BrandSubnav() {

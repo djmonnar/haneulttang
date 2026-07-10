@@ -5,6 +5,8 @@ export default function NotFound() {
   usePageMeta(
     '페이지를 찾을 수 없습니다 | 백년가업 하늘땅',
     '요청하신 페이지를 찾을 수 없습니다. 백년가업 하늘땅 홈으로 이동해 주세요.',
+    undefined,
+    true,
   )
 
   return (

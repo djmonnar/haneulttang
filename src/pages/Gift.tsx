@@ -1,72 +1,53 @@
-import { Link } from 'react-router-dom'
-import { usePageMeta } from '../hooks/usePageMeta'
+import { Building2, Gift as GiftIcon, PackageCheck, Phone } from 'lucide-react'
+import CtaBanner from '../components/CtaBanner'
+import ImagePlaceholder from '../components/ImagePlaceholder'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
-import ImagePlaceholder from '../components/ImagePlaceholder'
-import CtaBanner from '../components/CtaBanner'
 import { giftItems } from '../data/gifts'
-import { formatPrice } from '../data/menu'
+import { store } from '../data/store'
+import { usePageMeta } from '../hooks/usePageMeta'
+
+const icons = [GiftIcon, PackageCheck, GiftIcon, Building2]
 
 export default function Gift() {
   usePageMeta(
-    '선물세트 | 백년가업 하늘땅 본점',
-    '정성을 담은 갈비 선물세트. 양념갈비 세트, 가족 포장세트, 명절 선물세트, 기업 단체 선물까지 하늘땅의 정육 기반 선물 상품을 문의하세요.',
+    '하늘땅 선물세트 | 양념갈비·단체 주문 문의',
+    '하늘땅 양념돼지갈비 세트, 가족 포장세트, 명절 선물세트와 기업 단체 주문 구성을 전화로 상담해 드립니다.',
   )
 
   return (
     <>
-      <PageHero
-        eyebrow="GIFT"
-        title="선물세트"
-        description="정성을 담은 갈비 선물세트"
-      />
-
+      <PageHero eyebrow="GIFT SET" title="하늘땅 선물세트" description="하늘땅의 정성을 소중한 분께 전하세요" />
       <section className="section">
-        <div className="container container--narrow">
-          <SectionHeading
-            eyebrow="PREMIUM GIFT"
-            title="마음을 전하는 하늘땅의 선물"
-          />
-          <p className="lead-text">
-            하늘땅의 양념갈비와 정육 상품을 소중한 분께 선물하세요. 가족 선물,
-            명절 선물, 기업 단체 선물까지 문의 가능합니다.
-          </p>
-        </div>
-      </section>
-
-      <section className="section section--beige">
         <div className="container">
-          <div className="grid grid--2 gift-grid">
-            {giftItems.map((gift) => (
-              <article className="gift-card" key={gift.id}>
-                <ImagePlaceholder src={gift.image} label={gift.imageLabel} ratio="4 / 3" />
-                <div className="gift-card__body">
-                  <div className="gift-card__tags">
-                    {gift.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
+          <SectionHeading eyebrow="OUR GIFT" title="마음에 맞춰 준비하는 구성" description="구성과 수량은 주문 목적에 맞춰 전화로 상담해 드립니다." />
+          <div className="gift-grid">
+            {giftItems.map((item, index) => {
+              const Icon = icons[index]
+              return (
+                <article className="gift-card" key={item.id}>
+                  <ImagePlaceholder src={item.image} label={item.imageLabel} ratio="4 / 3" />
+                  <div className="gift-card__body">
+                    <Icon aria-hidden="true" size={22} />
+                    <h3>{item.name}</h3>
+                    <p>{item.description}</p>
+                    <strong>{item.id === 'corporate-gift' ? '대량 주문 문의' : '구성 상담'}</strong>
+                    <a href={store.telLink}><Phone aria-hidden="true" size={17} /> 주문 문의</a>
                   </div>
-                  <h3>{gift.name}</h3>
-                  <p className="gift-card__desc">{gift.description}</p>
-                  <p className="gift-card__price">{formatPrice(gift.price)}</p>
-                  <Link to="/reservation" className="btn btn--brown btn--sm">
-                    문의하기
-                  </Link>
-                </div>
-              </article>
-            ))}
+                </article>
+              )
+            })}
           </div>
-          <p className="menu-board__note">
-            선물세트는 문의형 상품으로 운영됩니다. 구성·수량·가격은 매장 또는
-            문의 양식을 통해 안내해 드립니다.
-          </p>
         </div>
       </section>
-
-      <CtaBanner
-        title="선물세트 문의"
-        description="명절 시즌과 기업 단체 주문은 사전 문의를 권장드립니다."
-      />
+      <section className="section section--ivory gift-guide">
+        <div className="container container--narrow">
+          <SectionHeading eyebrow="ORDER GUIDE" title="주문 안내" />
+          <ol><li><span>01</span><div><h3>용도와 수량 상담</h3><p>가정용, 명절 선물, 기업 단체 주문 등 목적과 수량을 알려주세요.</p></div></li><li><span>02</span><div><h3>구성과 일정 확인</h3><p>가능한 구성과 포장, 수령 일정을 전화로 안내해 드립니다.</p></div></li><li><span>03</span><div><h3>주문 확정</h3><p>상담한 내용에 따라 정성껏 준비해 드립니다.</p></div></li></ol>
+          <a className="btn btn--wine btn--full" href={store.telLink}><Phone aria-hidden="true" size={18} /> 선물세트 전화 문의 {store.phone}</a>
+        </div>
+      </section>
+      <CtaBanner title="선물의 용도와 수량을 알려주세요" description="구성과 가격은 전화 상담 후 정확하게 안내해 드립니다." />
     </>
   )
 }

@@ -1,111 +1,48 @@
-import { usePageMeta } from '../hooks/usePageMeta'
+import { Phone } from 'lucide-react'
+import CtaBanner from '../components/CtaBanner'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
-import ImagePlaceholder from '../components/ImagePlaceholder'
-import CtaBanner from '../components/CtaBanner'
-
-const spaceCards = [
-  {
-    title: '메인 홀',
-    desc: '넓고 쾌적한 메인 홀에서 숯불갈비 본연의 분위기를 즐기실 수 있습니다.',
-    image: '/images/space/main-hall.jpg',
-    label: '매장 내부 사진 자리',
-  },
-  {
-    title: '가족 외식석',
-    desc: '아이와 함께여도 편안한 가족 단위 좌석을 준비했습니다.',
-    image: '/images/space/family.jpg',
-    label: '가족 외식석 사진 자리',
-  },
-  {
-    title: '단체석',
-    desc: '회사 회식, 모임 등 단체 손님을 위한 넉넉한 좌석을 운영합니다.',
-    image: '/images/space/group.jpg',
-    label: '단체석 사진 자리',
-  },
-  {
-    title: '프라이빗 룸',
-    desc: '접대, 상견례, 부모님 모임 등 조용한 자리가 필요할 때 좋습니다.',
-    image: '/images/space/private-room.jpg',
-    label: '룸 사진 자리',
-  },
-  {
-    title: '대기 공간',
-    desc: '방문 인원이 많은 시간에도 편히 기다리실 수 있는 공간을 마련했습니다.',
-    image: '/images/space/waiting.jpg',
-    label: '대기 공간 사진 자리',
-  },
-  {
-    title: '주차 안내',
-    desc: '매장 앞 전용 주차장을 이용하실 수 있습니다. 단체 방문 시에도 여유롭게 주차 가능합니다.',
-    image: '/images/space/parking.jpg',
-    label: '주차 또는 외관 사진 자리',
-  },
-]
-
-const occasions = [
-  '부모님 모시고 가기 좋은 식사',
-  '가족 외식',
-  '회사 회식',
-  '단체 모임',
-  '손님 접대',
-  '점심 모임',
-]
+import { spaces, visitOccasions } from '../data/content'
+import { store } from '../data/store'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export default function Space() {
   usePageMeta(
-    '공간 안내 | 백년가업 하늘땅 본점',
-    '가족 외식부터 단체 모임까지 편안하게 머무는 공간. 메인 홀, 가족 외식석, 단체석, 프라이빗 룸, 주차 안내까지 하늘땅의 공간을 소개합니다.',
+    '진해 가족 외식·단체 회식 공간 | 백년가업 하늘땅',
+    '새롭게 신축한 하늘땅 본점의 메인 홀, 가족석, 단체석, 프라이빗 룸과 전용 주차장을 실제 사진으로 확인하세요.',
   )
 
   return (
     <>
-      <PageHero
-        eyebrow="SPACE"
-        title="공간 안내"
-        description="가족 외식부터 단체 모임까지, 편안하게 머무는 공간"
-      />
-
+      <PageHero eyebrow="SPACE" title="새로워진 공간" description="맛의 깊이는 그대로, 식사의 편안함은 한층 더" />
       <section className="section">
         <div className="container">
-          <SectionHeading
-            eyebrow="OUR SPACE"
-            title="하늘땅의 공간"
-            description="모임의 성격에 맞게 준비된 좌석과 공간을 소개합니다."
-          />
-          <div className="grid grid--3">
-            {spaceCards.map((card) => (
-              <article className="space-card" key={card.title}>
-                <ImagePlaceholder src={card.image} label={card.label} ratio="4 / 3" />
-                <div className="space-card__body">
-                  <h3>{card.title}</h3>
-                  <p>{card.desc}</p>
-                </div>
-              </article>
+          <SectionHeading eyebrow="OUR SPACE" title="모임에 맞는 편안한 자리" description="실제 하늘땅 본점의 공간을 소개합니다." />
+          <div className="space-gallery">
+            {spaces.map((space, index) => (
+              <figure className={`space-gallery__item ${index === 0 || index === 3 ? 'space-gallery__item--wide' : ''}`} key={space.id}>
+                <img src={space.image.src} alt={space.image.alt} width="1600" height="1067" loading={index < 2 ? 'eager' : 'lazy'} />
+                <figcaption><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{space.title}</h3><p>{space.description}</p></div></figcaption>
+              </figure>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section section--beige">
+      <section className="section section--ivory">
         <div className="container">
-          <SectionHeading
-            eyebrow="OCCASIONS"
-            title="이런 자리에 좋습니다"
-            description="하늘땅이 어울리는 모임을 추천해 드립니다."
-          />
-          <ul className="occasion-list">
-            {occasions.map((o) => (
-              <li key={o}>{o}</li>
+          <SectionHeading eyebrow="FOR YOUR MOMENT" title="방문 목적별 추천" />
+          <div className="occasion-grid">
+            {visitOccasions.map((item, index) => (
+              <article className="occasion-item" key={item.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3><p>{item.description}</p>
+                <a href={store.telLink}><Phone aria-hidden="true" size={17} /> 예약 문의</a>
+              </article>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
-
-      <CtaBanner
-        title="모임 전, 미리 문의해 주세요"
-        description="인원과 모임 성격을 알려주시면 알맞은 좌석을 준비해 드립니다."
-      />
+      <CtaBanner title="모임에 맞는 자리를 준비해 드립니다" description="인원과 모임 성격을 알려주시면 편안한 좌석을 안내해 드립니다." />
     </>
   )
 }

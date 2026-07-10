@@ -23,6 +23,13 @@ const SELECTOR = [
   '.gift-card',
   '.news-card',
   '.info-card',
+  '.trust-item',
+  '.signature-card',
+  '.standard-item',
+  '.occasion-item',
+  '.review-list blockquote',
+  '.menu-detail',
+  '.standard-detail',
 ].join(', ')
 
 export default function ScrollReveal() {
