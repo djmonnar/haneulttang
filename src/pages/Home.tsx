@@ -93,22 +93,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 브랜드 키워드 마르퀴 — 옆으로 흐르는 띠 */}
-      <div className="marquee" aria-hidden="true">
-        <div className="marquee__track">
-          {[0, 1].map((n) => (
-            <ul key={n}>
-              <li>숯불 양념갈비</li>
-              <li>百年家業</li>
-              <li>2대째 이어온 손맛</li>
-              <li>진해 갈비명가</li>
-              <li>참숯의 깊은 향</li>
-              <li>하늘땅</li>
-            </ul>
-          ))}
-        </div>
-      </div>
-
       <section className="section story-section">
         <div className="container story-layout">
           <figure className="story-visual">
