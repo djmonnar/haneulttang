@@ -44,23 +44,40 @@ export default function Home() {
         />
         <div className="hero__veil" aria-hidden="true" />
         <div className="container hero__inner">
-          <p className="hero__eyebrow">백년가업 하늘땅 · 진해 본점</p>
+          <p className="hero__eyebrow">
+            <span className="hero__eyebrow-desktop">백년가업 하늘땅 · 진해 본점</span>
+            <span className="hero__eyebrow-mobile">진해 숯불갈비 · 2대 가업</span>
+          </p>
           <h1 className="hero__title">
-            <span>2대를 이어온 맛의 깊이,</span>
-            <span>새로워진 공간의 품격</span>
+            <span className="hero__title-desktop">
+              <span>2대를 이어온 맛의 깊이,</span>
+              <span>새로워진 공간의 품격</span>
+            </span>
+            <span className="hero__title-mobile">
+              <span>백년가업</span>
+              <strong>하늘땅</strong>
+            </span>
           </h1>
           <p className="hero__sub">
-            엄선한 원육과 정성껏 만든 양념, 참숯의 깊은 향.
-            <br className="br-desktop" /> 부모님의 손맛과 철학을 이어 변함없는 숯불구이의 기준을 지켜갑니다.
+            <span className="hero__sub-desktop">
+              엄선한 원육과 정성껏 만든 양념, 참숯의 깊은 향.
+              <br className="br-desktop" /> 부모님의 손맛과 철학을 이어 변함없는 숯불구이의 기준을 지켜갑니다.
+            </span>
+            <span className="hero__sub-mobile">
+              2대를 이어온 맛의 깊이,<br />새로워진 공간의 품격
+            </span>
           </p>
+          <div className="hero__mobile-status">
+            <BusinessStatus />
+          </div>
           <div className="hero__actions">
             <Link to="/menu" className="btn btn--ivory">
-              메뉴 보기 <ArrowRight aria-hidden="true" size={18} />
+              대표 메뉴 보기 <ArrowRight aria-hidden="true" size={18} />
             </Link>
-            <a href={store.telLink} className="btn btn--wine">
+            <a href={store.telLink} className="btn btn--wine hero__action-secondary">
               <Phone aria-hidden="true" size={18} /> 전화 예약
             </a>
-            <Link to="/location" className="btn btn--outline-light">
+            <Link to="/location" className="btn btn--outline-light hero__action-secondary">
               <MapPin aria-hidden="true" size={18} /> 오시는 길
             </Link>
           </div>
