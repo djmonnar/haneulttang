@@ -9,7 +9,7 @@ import { usePageMeta } from '../hooks/usePageMeta'
 export default function MenuPage() {
   usePageMeta(
     '하늘땅 메뉴 | 돼지갈비·소갈비·한우 불고기',
-    '숯불 양념 돼지갈비 200g 15,000원, 소갈비, 서울식 한우 불고기와 점심특선까지 하늘땅의 메뉴와 가격을 안내합니다.',
+    '숯불 양념 돼지갈비 200g 17,000원, 소갈비, 서울식 한우 불고기와 점심특선까지 하늘땅의 메뉴와 가격을 안내합니다.',
   )
 
   return (
