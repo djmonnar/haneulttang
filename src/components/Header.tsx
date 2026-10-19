@@ -7,7 +7,7 @@ import { store } from '../data/store'
 const navItems = [
   { to: '/brand', label: '하늘땅 이야기' },
   { to: '/menu', label: '메뉴' },
-  { to: '/space', label: '공간' },
+  { to: '/space', label: '매장 안내' },
   { to: '/standards', label: '하늘땅의 기준' },
   { to: '/gift', label: '선물세트' },
   { to: '/location', label: '오시는 길' },
@@ -15,15 +15,7 @@ const navItems = [
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const { pathname } = useLocation()
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => setOpen(false), [pathname])
 
@@ -33,7 +25,7 @@ export default function Header() {
   }, [open])
 
   return (
-    <header className={`header ${scrolled || open || pathname !== '/' ? 'header--solid' : ''}`}>
+    <header className="header header--solid">
       <div className="container header__inner">
         <Link to="/" className="header__logo" aria-label="백년가업 하늘땅 홈으로">
           <BrandSeal className="header__seal" />

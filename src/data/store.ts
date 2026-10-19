@@ -42,7 +42,7 @@ const placeQuery = encodeURIComponent('백년가업 하늘땅 본점')
 export const store: StoreInfo = {
   brandName: '백년가업 하늘땅',
   storeName: '백년가업 하늘땅 본점',
-  slogan: '2대를 이어온 맛의 깊이, 새로워진 공간의 품격',
+  slogan: '진해 경화동 숯불갈비',
   address: '경남 창원시 진해구 병암로 49',
   lotAddress: '경남 창원시 진해구 경화동 883-3',
   locationGuide: '스타벅스와 탑텐 사이에서 우회전',

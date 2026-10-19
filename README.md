@@ -30,11 +30,15 @@ npx vercel deploy --prod --yes
 | 선물세트 상품 | `src/data/gifts.ts` |
 | 공지/소식 게시글 | `src/data/news.ts` |
 | 자주 묻는 질문과 답변 | `src/data/faqs.ts` |
+| 메인 페이지 구성과 문구 | `src/pages/Home.tsx` |
+| 메인 페이지 전용 스타일 | `src/pages/Home.css` |
 
 - 가격을 `null`로 두면 "가격 문의"로 표시됩니다.
 - `[확인 필요]`로 표시된 값은 실제 정보 확정 후 교체하세요.
 
 ## 사진 교체
+
+메인 페이지는 기존 음식·매장 사진을 사용하며, 메뉴는 모바일에서도 세로로 표시합니다. 본문은 고딕체를 사용하고 제목·안내 문구를 짧게 유지합니다. 사진에 보이는 내용을 반복하는 수식어나 출처가 확인되지 않은 후기 요약은 메인에 추가하지 않습니다.
 
 `public/images/` 아래에 정해진 파일명으로 사진을 넣으면 코드 수정 없이 자동 표시됩니다.
 (파일이 없으면 placeholder가 표시됩니다.) 경로 목록: `public/images/README.md`
@@ -63,3 +67,5 @@ npx vercel deploy --prod --yes
 - **FAQ 구조화 데이터**: `/faq`에서 화면과 동일한 질문·답변으로 FAQPage와 BreadcrumbList JSON-LD를 생성합니다. 질문을 수정하면 메인 FAQ와 구조화 데이터도 함께 반영됩니다. 검색 결과나 AI 답변 노출을 보장하는 설정은 아닙니다.
 - **브랜드 문의 폼**: `src/pages/Business.tsx` — 메일 발송 또는 폼 서비스 연동 예정
 - **커스텀 도메인**: Vercel 프로젝트 설정에서 연결 후 `robots.txt`, `sitemap.xml`, `index.html`의 URL 교체
+
+2026-10-19 메인 정리 시 OwnerVista의 2026-09-16 진단(runId: `b69c7914-ad6a-4950-b84d-be73736a9edd`)을 확인했습니다. 당시 본문 추출과 주요 항목 판정이 완료되지 않아 미확인 내용을 사실로 사용하지 않았습니다. 메뉴·가격·연락처·영업시간과 FAQ는 기존 사이트의 정보를 유지했습니다.
