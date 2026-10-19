@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Menu, Phone, X } from 'lucide-react'
+import { CalendarCheck, Menu, Phone, X } from 'lucide-react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import BrandSeal from './BrandSeal'
 import { store } from '../data/store'
@@ -61,9 +61,9 @@ export default function Header() {
         </nav>
 
         <div className="header__right">
-          <Link to="/reservation" className="btn btn--wine btn--sm header__cta">
-            예약 문의
-          </Link>
+          <a href={store.naverBookingUrl} target="_blank" rel="noreferrer" className="btn btn--wine btn--sm header__cta">
+            네이버 예약
+          </a>
           <button
             type="button"
             className="header__burger"
@@ -101,10 +101,16 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <a className="header__drawer-call" href={store.telLink} tabIndex={open ? 0 : -1}>
-            <Phone aria-hidden="true" size={19} />
-            전화 예약 {store.phone}
-          </a>
+          <div className="header__drawer-actions">
+            <a className="header__drawer-booking" href={store.naverBookingUrl} target="_blank" rel="noreferrer" tabIndex={open ? 0 : -1}>
+              <CalendarCheck aria-hidden="true" size={19} />
+              네이버 예약
+            </a>
+            <a className="header__drawer-call" href={store.telLink} tabIndex={open ? 0 : -1}>
+              <Phone aria-hidden="true" size={19} />
+              전화 문의 {store.phone}
+            </a>
+          </div>
         </div>
       </nav>
     </header>

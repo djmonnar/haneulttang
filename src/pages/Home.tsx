@@ -11,9 +11,11 @@ import {
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import BusinessStatus from '../components/BusinessStatus'
+import NaverMap from '../components/NaverMap'
 import SectionHeading from '../components/SectionHeading'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { giftItems } from '../data/gifts'
+import { homeFaqItems } from '../data/faqs'
 import { formatPrice, signatureMenus } from '../data/menu'
 import { store } from '../data/store'
 import {
@@ -75,7 +77,7 @@ export default function Home() {
               대표 메뉴 보기 <ArrowRight aria-hidden="true" size={18} />
             </Link>
             <a href={store.telLink} className="btn btn--wine hero__action-secondary">
-              <Phone aria-hidden="true" size={18} /> 전화 예약
+              <Phone aria-hidden="true" size={18} /> 전화 문의
             </a>
             <Link to="/location" className="btn btn--outline-light hero__action-secondary">
               <MapPin aria-hidden="true" size={18} /> 오시는 길
@@ -227,7 +229,7 @@ export default function Home() {
                 <span>{String(index + 1).padStart(2, '0')}</span>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-                <a href={store.telLink} aria-label={`${item.title} 전화 예약`}><Phone aria-hidden="true" size={17} /> 예약 문의</a>
+                <a href={store.naverBookingUrl} target="_blank" rel="noreferrer" aria-label={`${item.title} 네이버 예약`}><CalendarCheck aria-hidden="true" size={17} /> 네이버 예약</a>
               </article>
             ))}
           </div>
@@ -268,13 +270,38 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section faq-preview" aria-label="방문 전 자주 묻는 질문">
+        <div className="container container--narrow">
+          <SectionHeading
+            eyebrow="FAQ"
+            title="방문 전 자주 묻는 질문"
+            description="영업시간부터 예약과 주차까지 필요한 정보를 모았습니다."
+          />
+          <div className="faq-list faq-list--preview">
+            {homeFaqItems.map((item, index) => (
+              <details className="faq-item" key={item.question} open={index === 0}>
+                <summary>
+                  <strong>{item.question}</strong>
+                  <span className="faq-item__toggle" aria-hidden="true" />
+                </summary>
+                <div className="faq-item__answer">
+                  <span aria-hidden="true">A</span>
+                  <p>{item.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+          <div className="section__more">
+            <Link to="/faq" className="btn btn--outline-brown">전체 질문 보기 <ArrowRight aria-hidden="true" size={18} /></Link>
+          </div>
+        </div>
+      </section>
+
       <section className="section section--ivory">
         <div className="container">
           <SectionHeading eyebrow="LOCATION" title="오시는 길" description="진해 경화동, 스타벅스와 탑텐 사이에서 우회전하세요." />
           <div className="location-home">
-            <div className="map-embed">
-              <iframe src={store.mapEmbedUrl} title="백년가업 하늘땅 본점 위치 지도" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
-            </div>
+            <NaverMap />
             <div className="location-home__info">
               <p className="location-home__eyebrow">{store.storeName}</p>
               <h2>{store.address}</h2>

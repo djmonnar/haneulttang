@@ -4,6 +4,7 @@ import BrandSeal from './BrandSeal'
 import { store } from '../data/store'
 
 const corporateLinks = [
+  { to: '/faq', label: '자주 묻는 질문' },
   { to: '/business', label: '기업·브랜드 문의' },
   { to: '/news', label: '소식·공지' },
 ] as const

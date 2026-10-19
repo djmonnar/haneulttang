@@ -26,31 +26,53 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "@id": "https://xn--wh1bu4c029b.com/#restaurant",
-        "name": "백년가업 하늘땅 본점",
-        "alternateName": "하늘땅",
-        "description": "2대를 이어온 손맛과 철학, 쾌적한 신축 매장과 전용 주차장을 갖춘 진해 숯불갈비 전문점",
-        "servesCuisine": ["Korean", "Korean BBQ"],
-        "image": "https://xn--wh1bu4c029b.com/og-image.jpg",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "병암로 49",
-          "addressLocality": "창원시 진해구",
-          "addressRegion": "경상남도",
-          "addressCountry": "KR"
-        },
-        "url": "https://xn--wh1bu4c029b.com/",
-        "telephone": "+82-55-541-5252",
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "11:00",
-          "closes": "21:30"
-        },
-        "acceptsReservations": true,
-        "menu": "https://xn--wh1bu4c029b.com/menu",
-        "hasMap": "https://map.naver.com/p/search/%EB%B0%B1%EB%85%84%EA%B0%80%EC%97%85%20%ED%95%98%EB%8A%98%EB%95%85%20%EB%B3%B8%EC%A0%90"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://xn--wh1bu4c029b.com/#website",
+            "url": "https://xn--wh1bu4c029b.com/",
+            "name": "백년가업 하늘땅",
+            "alternateName": ["하늘땅", "하늘땅 본점"],
+            "inLanguage": "ko-KR"
+          },
+          {
+            "@type": "Restaurant",
+            "@id": "https://xn--wh1bu4c029b.com/#restaurant",
+            "name": "백년가업 하늘땅 본점",
+            "alternateName": "하늘땅",
+            "description": "2대를 이어온 손맛과 철학, 쾌적한 신축 매장과 전용 주차장을 갖춘 진해 숯불갈비 전문점",
+            "servesCuisine": ["Korean", "Korean BBQ"],
+            "image": "https://xn--wh1bu4c029b.com/og-image.jpg",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "병암로 49",
+              "addressLocality": "창원시 진해구",
+              "addressRegion": "경상남도",
+              "addressCountry": "KR"
+            },
+            "url": "https://xn--wh1bu4c029b.com/",
+            "telephone": "+82-55-541-5252",
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 35.1582828,
+              "longitude": 128.6924111
+            },
+            "openingHoursSpecification": [{
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "11:00",
+              "closes": "15:00"
+            }, {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "17:00",
+              "closes": "21:30"
+            }],
+            "acceptsReservations": "https://map.naver.com/p/entry/place/38241126?lng=128.6924111&lat=35.1582828&placePath=%2Fbooking%3Ffrom%3Dmap%26fromPanelNum%3D1%26additionalHeight%3D76%26timestamp%3D202610191635%26locale%3Dko%26svcName%3Dmap_pcv5&searchType=place&c=15.00,0,0,0,dh",
+            "menu": "https://xn--wh1bu4c029b.com/menu",
+            "hasMap": "https://map.naver.com/p/search/%EB%B0%B1%EB%85%84%EA%B0%80%EC%97%85%20%ED%95%98%EB%8A%98%EB%95%85%20%EB%B3%B8%EC%A0%90"
+          }
+        ]
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />

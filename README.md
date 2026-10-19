@@ -29,6 +29,7 @@ npx vercel deploy --prod --yes
 | 메뉴 추가·가격 변경 | `src/data/menu.ts` |
 | 선물세트 상품 | `src/data/gifts.ts` |
 | 공지/소식 게시글 | `src/data/news.ts` |
+| 자주 묻는 질문과 답변 | `src/data/faqs.ts` |
 
 - 가격을 `null`로 두면 "가격 문의"로 표시됩니다.
 - `[확인 필요]`로 표시된 값은 실제 정보 확정 후 교체하세요.
@@ -48,14 +49,17 @@ npx vercel deploy --prod --yes
 | `/space` | 공간 안내 |
 | `/butchery` | 정육·육가공 |
 | `/gift` | 선물세트 |
-| `/reservation` | 단체예약 |
+| `/reservation` | 네이버 예약·전화 문의 |
 | `/business` | 브랜드 문의 |
 | `/location` | 오시는 길 |
 | `/news` | 소식/공지 |
+| `/faq` | 자주 묻는 질문 |
 
 ## 추후 연동 지점
 
 - **카카오톡 채널**: `src/data/store.ts`의 `kakaoChannelUrl` 교체
-- **예약 폼**: `src/pages/Reservation.tsx` — 현재 UI만 동작, 카카오톡/네이버 예약 연동 예정
+- **네이버 예약**: `src/data/store.ts`의 `naverBookingUrl`에서 예약 링크 관리
+- **네이버 지도**: `src/components/NaverMap.tsx`가 메인과 오시는 길에 공통 적용됩니다. 클라이언트 ID와 좌표는 `src/data/store.ts`에서 관리합니다. 네이버 클라우드 Maps의 Web 서비스 URL에 `https://xn--wh1bu4c029b.com`을 등록하고 Dynamic Map 사용을 활성화해야 합니다. 로컬 테스트 시 테스트 주소도 별도로 등록합니다.
+- **FAQ 구조화 데이터**: `/faq`에서 화면과 동일한 질문·답변으로 FAQPage와 BreadcrumbList JSON-LD를 생성합니다. 질문을 수정하면 메인 FAQ와 구조화 데이터도 함께 반영됩니다. 검색 결과나 AI 답변 노출을 보장하는 설정은 아닙니다.
 - **브랜드 문의 폼**: `src/pages/Business.tsx` — 메일 발송 또는 폼 서비스 연동 예정
 - **커스텀 도메인**: Vercel 프로젝트 설정에서 연결 후 `robots.txt`, `sitemap.xml`, `index.html`의 URL 교체

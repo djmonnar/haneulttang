@@ -20,8 +20,13 @@ export interface StoreInfo {
   parking: string
   visitNote: string
   directions: string[]
+  naverBookingUrl: string
+  naverMapClientId: string
+  coordinates: {
+    latitude: number
+    longitude: number
+  }
   naverMapUrl: string
-  mapEmbedUrl: string
   kakaoMapUrl: string
   kakaoChannelUrl: string | null
   naverReviewUrl: string | null
@@ -34,8 +39,6 @@ export interface StoreInfo {
 }
 
 const placeQuery = encodeURIComponent('백년가업 하늘땅 본점')
-const addressQuery = encodeURIComponent('경남 창원시 진해구 병암로 49')
-
 export const store: StoreInfo = {
   brandName: '백년가업 하늘땅',
   storeName: '백년가업 하늘땅 본점',
@@ -62,8 +65,13 @@ export const store: StoreInfo = {
     '진해 경화동 병암로 49',
     '가족 및 단체 방문 시 사전 예약 권장',
   ],
+  naverBookingUrl: 'https://map.naver.com/p/entry/place/38241126?lng=128.6924111&lat=35.1582828&placePath=%2Fbooking%3Ffrom%3Dmap%26fromPanelNum%3D1%26additionalHeight%3D76%26timestamp%3D202610191635%26locale%3Dko%26svcName%3Dmap_pcv5&searchType=place&c=15.00,0,0,0,dh',
+  naverMapClientId: 't1g6hcfxha',
+  coordinates: {
+    latitude: 35.1582828,
+    longitude: 128.6924111,
+  },
   naverMapUrl: `https://map.naver.com/p/search/${placeQuery}`,
-  mapEmbedUrl: `https://maps.google.com/maps?q=${addressQuery}&z=16&ie=UTF8&output=embed`,
   kakaoMapUrl: `https://map.kakao.com/?q=${placeQuery}`,
   kakaoChannelUrl: null,
   naverReviewUrl: null,

@@ -1,4 +1,4 @@
-import { CalendarDays, MapPin, Phone } from 'lucide-react'
+import { CalendarCheck, MapPin, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { store } from '../data/store'
 
@@ -9,7 +9,7 @@ interface Props {
 
 export default function CtaBanner({
   title = '소중한 자리, 미리 준비해 드립니다',
-  description = '가족 외식과 단체 회식은 방문 전 전화로 문의해 주세요.',
+  description = '네이버 예약 또는 전화 문의로 편리하게 자리를 준비하세요.',
 }: Props) {
   return (
     <section className="cta-banner">
@@ -20,12 +20,12 @@ export default function CtaBanner({
           <p className="cta-banner__desc">{description}</p>
         </div>
         <div className="cta-banner__actions">
-          <a className="btn btn--ivory" href={store.telLink}>
-            <Phone aria-hidden="true" size={18} /> 전화 예약
+          <a className="btn btn--ivory" href={store.naverBookingUrl} target="_blank" rel="noreferrer">
+            <CalendarCheck aria-hidden="true" size={18} /> 네이버 예약
           </a>
-          <Link className="btn btn--outline-light" to="/reservation">
-            <CalendarDays aria-hidden="true" size={18} /> 예약 안내
-          </Link>
+          <a className="btn btn--outline-light" href={store.telLink}>
+            <Phone aria-hidden="true" size={18} /> 전화 문의
+          </a>
           <Link className="btn btn--outline-light" to="/location">
             <MapPin aria-hidden="true" size={18} /> 오시는 길
           </Link>

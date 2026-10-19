@@ -1,4 +1,4 @@
-import { Phone } from 'lucide-react'
+import { CalendarCheck } from 'lucide-react'
 import CtaBanner from '../components/CtaBanner'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
@@ -36,7 +36,7 @@ export default function Space() {
             {visitOccasions.map((item, index) => (
               <article className="occasion-item" key={item.title}>
                 <span>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3><p>{item.description}</p>
-                <a href={store.telLink}><Phone aria-hidden="true" size={17} /> 예약 문의</a>
+                <a href={store.naverBookingUrl} target="_blank" rel="noreferrer"><CalendarCheck aria-hidden="true" size={17} /> 네이버 예약</a>
               </article>
             ))}
           </div>

@@ -17,6 +17,7 @@ const Reservation = lazy(() => import('./pages/Reservation'))
 const Business = lazy(() => import('./pages/Business'))
 const Location = lazy(() => import('./pages/Location'))
 const News = lazy(() => import('./pages/News'))
+const Faq = lazy(() => import('./pages/Faq'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const Legal = lazy(() => import('./pages/Legal'))
 
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="/business" element={<Business />} />
             <Route path="/location" element={<Location />} />
             <Route path="/news" element={<News />} />
+            <Route path="/faq" element={<Faq />} />
             <Route path="/privacy" element={<Legal type="privacy" />} />
             <Route path="/terms" element={<Legal type="terms" />} />
             <Route path="*" element={<NotFound />} />

@@ -2,6 +2,7 @@ import { CarFront, Clock3, MapPin, Navigation, Phone } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import BusinessStatus from '../components/BusinessStatus'
+import NaverMap from '../components/NaverMap'
 import { store } from '../data/store'
 import { usePageMeta } from '../hooks/usePageMeta'
 
@@ -16,7 +17,7 @@ export default function Location() {
       <PageHero eyebrow="LOCATION" title="오시는 길" description="진해구 병암로 49, 전용 주차장을 갖춘 하늘땅 본점" />
       <section className="section">
         <div className="container location-page">
-          <div className="map-embed map-embed--tall"><iframe src={store.mapEmbedUrl} title="백년가업 하늘땅 본점 위치 지도" loading="eager" referrerPolicy="no-referrer-when-downgrade" allowFullScreen /></div>
+          <NaverMap tall />
           <div className="location-page__panel">
             <BusinessStatus />
             <p className="section-kicker">{store.storeName}</p>
