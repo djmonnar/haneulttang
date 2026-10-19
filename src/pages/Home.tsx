@@ -20,15 +20,15 @@ export default function Home() {
       <section className="home-hero" aria-labelledby="home-title">
         <img
           className="home-hero__photo"
-          src="/images/hero/galbi-1.jpg"
-          alt="하늘땅에서 반찬과 함께 차린 숯불 양념 돼지갈비"
-          width="1280"
-          height="853"
+          src="/images/hero/galbi-2.jpg"
+          alt="하늘땅 숯불 위에서 굽고 있는 양념 돼지갈비"
+          width="1600"
+          height="1067"
           fetchPriority="high"
         />
         <div className="container home-hero__content">
-          <p className="home-hero__location">진해 경화동 · 숯불갈비</p>
           <h1 id="home-title"><span>백년가업</span>하늘땅</h1>
+          <p className="home-hero__location">진해 경화동 · 숯불갈비</p>
           <div className="home-hero__links">
             <Link to="/menu">메뉴 보기 <ArrowRight aria-hidden="true" size={20} /></Link>
             <a href={store.naverBookingUrl} target="_blank" rel="noreferrer">네이버 예약 <ArrowRight aria-hidden="true" size={20} /></a>
@@ -43,6 +43,43 @@ export default function Home() {
           <a href={store.telLink}><Phone aria-hidden="true" size={16} /> {store.phone}</a>
         </div>
       </div>
+
+      <section className="home-section home-place" aria-labelledby="home-place-title">
+        <div className="container">
+          <div className="home-place__heading">
+            <div>
+              <h2 id="home-place-title">하늘땅 이야기</h2>
+              <p>부모님이 하시던 갈비집을 이어<br />진해 경화동에서 2대째 운영하고 있습니다.</p>
+            </div>
+            <Link className="home-link" to="/brand">소개 더 보기 <ArrowRight aria-hidden="true" size={18} /></Link>
+          </div>
+          <div className="home-place__photos">
+            <figure>
+              <img src="/images/space/main-hall.jpg" alt="테이블 좌석과 숯불 배기 시설이 있는 하늘땅 홀" width="1600" height="1067" loading="lazy" />
+              <figcaption>매장 내부</figcaption>
+            </figure>
+            <figure>
+              <img src="/images/hero/exterior.jpg" alt="백년가업 하늘땅 본점 외관과 매장 앞 주차장" width="1920" height="1280" loading="lazy" />
+              <figcaption>매장 입구와 주차장</figcaption>
+            </figure>
+          </div>
+          <div className="home-place__info">
+            <div className="home-place__visit">
+              <dl>
+                <div><dt>좌석</dt><dd>가족석 · 단체석 · 룸</dd></div>
+                <div><dt>주차</dt><dd>매장 앞 전용 주차장</dd></div>
+              </dl>
+            </div>
+            <div className="home-place__booking">
+              <p>단체로 방문하실 때는 미리 연락해 주세요.</p>
+              <div>
+                <a className="home-link" href={store.telLink}><Phone aria-hidden="true" size={16} /> {store.phone}</a>
+                <Link className="home-link" to="/space">매장 사진 <ArrowRight aria-hidden="true" size={18} /></Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="home-section home-menu" aria-labelledby="home-menu-title">
         <div className="container">
@@ -71,40 +108,6 @@ export default function Home() {
               <ArrowRight aria-hidden="true" size={18} />
             </Link>
           ))}
-        </div>
-      </section>
-
-      <section className="home-section home-place" aria-labelledby="home-place-title">
-        <div className="container">
-          <div className="home-section__heading">
-            <h2 id="home-place-title">매장 안내</h2>
-            <Link className="home-link" to="/space">사진 더 보기 <ArrowRight aria-hidden="true" size={18} /></Link>
-          </div>
-          <div className="home-place__photos">
-            <figure>
-              <img src="/images/space/main-hall.jpg" alt="테이블 좌석과 숯불 배기 시설이 있는 하늘땅 홀" width="1600" height="1067" loading="lazy" />
-              <figcaption>매장 내부</figcaption>
-            </figure>
-            <figure>
-              <img src="/images/hero/exterior.jpg" alt="백년가업 하늘땅 본점 외관과 매장 앞 주차장" width="1920" height="1280" loading="lazy" />
-              <figcaption>매장 입구와 주차장</figcaption>
-            </figure>
-          </div>
-          <div className="home-place__info">
-            <div className="home-place__story">
-              <h3>하늘땅 이야기</h3>
-              <p>하늘땅은 부모님이 하시던 갈비집을 이어 2대째 운영하고 있습니다.</p>
-              <Link className="home-link" to="/brand">하늘땅 이야기 <ArrowRight aria-hidden="true" size={18} /></Link>
-            </div>
-            <div className="home-place__visit">
-              <dl>
-                <div><dt>좌석</dt><dd>가족석 · 단체석 · 룸</dd></div>
-                <div><dt>주차</dt><dd>매장 앞 전용 주차장</dd></div>
-              </dl>
-              <p>단체로 방문하실 때는 미리 연락해 주세요.</p>
-              <a className="home-link" href={store.telLink}><Phone aria-hidden="true" size={16} /> {store.phone}</a>
-            </div>
-          </div>
         </div>
       </section>
 
