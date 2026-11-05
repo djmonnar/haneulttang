@@ -24,7 +24,7 @@ export default function MenuPage() {
           <div className="menu-detail-list">
             {signatureMenus.map((menu, index) => (
               <article className={`menu-detail ${index % 2 ? 'menu-detail--reverse' : ''}`} key={menu.id} id={menu.id}>
-                <img src={menu.image} alt={menu.imageLabel} width="1600" height="1067" loading={index === 0 ? 'eager' : 'lazy'} />
+                  <img src={menu.image} alt={menu.imageLabel} width="1920" height="1280" loading={index === 0 ? 'eager' : 'lazy'} />
                 <div className="menu-detail__copy">
                   <p className="menu-detail__index">SIGNATURE {String(index + 1).padStart(2, '0')}</p>
                   <h2>{menu.name}</h2>
@@ -38,8 +38,7 @@ export default function MenuPage() {
       </section>
 
       <section className="section section--charcoal lunch-section">
-        <div className="container lunch-section__layout">
-          <img src="/images/menu/lunch-bulgogi.jpg" alt="가운데가 솟은 서울식 불고기판의 한우 불고기 점심특선" width="1600" height="1067" loading="lazy" />
+        <div className="container container--narrow lunch-section__layout lunch-section__layout--text">
           <div>
             <p className="section-kicker">LUNCH SPECIAL</p>
             <span className="menu-badge">점심특선</span>

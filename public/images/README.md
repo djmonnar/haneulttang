@@ -1,30 +1,18 @@
-# 이미지 교체 안내
+# 사진 관리
 
-아래 경로에 실제 사진 파일을 넣으면 **코드 수정 없이** 사이트에 자동 반영됩니다.
-(파일이 없으면 고급스러운 placeholder가 대신 표시됩니다.)
+2026-11-05 사용자가 제공한 매장 실사진 8장을 `visit-20261105/`에서 사용합니다. 원본은 변경하지 않고 가로 1920px, WebP 품질 85로 변환했습니다. 합성이나 생성형 보정은 하지 않았습니다.
 
-| 파일 경로 | 사용 위치 |
-| --- | --- |
-| `hero.jpg` | 메인 페이지 히어로 배경 |
-| `menu/yangnyeom-galbi.jpg` | 숯불 양념 갈비 |
-| `menu/so-galbi.jpg` | 숯불 양념 소갈비 |
-| `menu/hanwoo-bulgogi.jpg` | 숯불 한우 불고기 |
-| `menu/lunch-bulgogi.jpg` | 점심특선 |
-| `space/main-hall.jpg` | 메인 홀 |
-| `space/family.jpg` | 가족 외식석 |
-| `space/group.jpg` | 단체석 |
-| `space/parents.jpg` | 부모님 모임 좌석 |
-| `space/private-room.jpg` | 프라이빗 룸 |
-| `space/waiting.jpg` | 대기 공간 |
-| `space/parking.jpg` | 주차/외관 |
-| `butchery/showcase.jpg` | 정육 쇼케이스 |
-| `butchery/processing.jpg` | 육가공 작업 |
-| `butchery/marinated.jpg` | 양념갈비 |
-| `brand/main.jpg` | 브랜드 대표 이미지 |
-| `brand/store.jpg` | 매장 외관/내부 |
-| `gift/yangnyeom-set.jpg` | 양념갈비 세트 |
-| `gift/family-set.jpg` | 가족 포장세트 |
-| `gift/holiday-set.jpg` | 명절 선물세트 |
-| `gift/corporate-gift.jpg` | 기업 단체 선물 |
+| 원본 파일 끝자리 | 웹 파일 | 내용 |
+| --- | --- | --- |
+| 181248051 | `room-window.webp` | 창가 좌석 |
+| 181245738 | `room-connected.webp` | 룸 테이블 |
+| 181243445 | `room-seating.webp` | 룸 좌석 |
+| 181240730 | `hall.webp` | 홀 전체 |
+| 181238269 | `pork-galbi.webp` | 숯불 양념 돼지갈비, 사용자 확인 |
+| 181234892 | `beef-galbi.webp` | 숯불 양념 소갈비, 사용자 확인 |
+| 181231153 | `charcoal-table.webp` | 참숯 화로와 곁들임 |
+| 181226879 | `hanwoo-bulgogi.webp` | 서울식 한우 불고기 |
 
-권장 사이즈: 가로 1200px 이상, JPG 형식.
+사진 경로·대체 텍스트·크기는 `src/data/photos.ts`에서 관리합니다. 기존에 사용자가 제공한 본점 외관 사진 `hero/exterior.jpg`와 카카오 공유용 `public/og-image.jpg`는 유지합니다.
+
+한 페이지의 본문에서 같은 사진을 반복하지 않습니다. 실제 사진이 없는 선물 포장·고기 손질·숙성·대기 공간을 다른 장면으로 가장하지 않습니다. 새 사진을 추가한 후 해당 데이터와 화면을 함께 수정해 주세요.

@@ -5,6 +5,7 @@ import CtaBanner from '../components/CtaBanner'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import { brandStoryParagraphs, trustHighlights } from '../data/content'
+import { photos } from '../data/photos'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 const values = [
@@ -68,8 +69,8 @@ export default function Brand() {
             <ul>{values.map((value) => <li key={value}><Check aria-hidden="true" size={18} /> {value}</li>)}</ul>
           </div>
           <div className="brand-renewal__images">
-            <img src="/images/brand/store.jpg" alt="하늘땅의 이전 매장 이야기" width="1600" height="1067" loading="lazy" />
-            <img src="/images/space/main-hall.jpg" alt="새롭게 지은 하늘땅 본점 메인 홀" width="1600" height="1067" loading="lazy" />
+            <img {...photos.roomWindow} loading="lazy" />
+            <img {...photos.roomConnected} loading="lazy" />
           </div>
         </div>
       </section>

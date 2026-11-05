@@ -1,5 +1,5 @@
 import { formatPrice, lunchMenus, signatureMenus } from './menu'
-import { store } from './store'
+import { seatingSummary, store } from './store'
 
 export type FaqCategory = '방문 안내' | '예약 안내' | '메뉴와 공간'
 
@@ -28,7 +28,7 @@ export const faqItems: FaqItem[] = [
   {
     category: '방문 안내',
     question: '주차할 수 있나요?',
-    answer: '네. 매장 전용 주차장을 이용하실 수 있습니다. 내비게이션에서 백년가업 하늘땅 본점 또는 경남 창원시 진해구 병암로 49를 검색해 주세요.',
+    answer: `매장 전용 주차장에 ${store.parkingMinimumSpaces}대 이상 주차할 수 있으며, 매장 앞 도로변 흰 선 구간에도 주차가 가능합니다. 내비게이션에서 백년가업 하늘땅 본점 또는 ${store.address}를 검색해 주세요.`,
   },
   {
     category: '방문 안내',
@@ -53,7 +53,7 @@ export const faqItems: FaqItem[] = [
   {
     category: '예약 안내',
     question: '가족 외식이나 단체 모임도 가능한가요?',
-    answer: '네. 가족석과 단체석, 프라이빗 룸을 갖추고 있습니다. 단체 방문이나 격식 있는 모임은 원활한 자리 준비를 위해 미리 예약해 주세요.',
+    answer: `네. ${seatingSummary}까지 이용할 수 있습니다. 룸 전체 개방이나 단체 모임은 ${store.phone}로 인원과 일정을 문의해 주세요.`,
   },
   {
     category: '메뉴와 공간',

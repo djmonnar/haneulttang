@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 import BusinessStatus from '../components/BusinessStatus'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
-import { store } from '../data/store'
+import SeatingGuide from '../components/SeatingGuide'
+import { seatingSummary, store } from '../data/store'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 const reservationTypes = ['가족 외식', '부모님 모임', '회사 회식', '친목 모임', '격식 있는 자리'] as const
 
 export default function Reservation() {
-  usePageMeta('예약 안내 | 백년가업 하늘땅 본점', '가족 외식과 단체 모임은 네이버 예약 또는 하늘땅 본점 055-541-5252 전화 문의를 이용해 주세요.')
+  usePageMeta('예약 안내 | 백년가업 하늘땅 본점', `${seatingSummary}. 가족 외식과 단체 모임은 네이버 예약 또는 ${store.phone} 전화 문의를 이용해 주세요.`)
 
   return (
     <>
@@ -28,6 +29,7 @@ export default function Reservation() {
             <article><Clock3 aria-hidden="true" /><h3>운영시간 확인</h3><p>브레이크타임 15:00-17:00, 라스트오더 20:00입니다.</p></article>
           </div>
           <div className="reservation-types">{reservationTypes.map((type) => <span key={type}>{type}</span>)}</div>
+          <SeatingGuide />
           <p className="reservation-note">가족 및 단체 방문은 원활한 자리 준비를 위해 사전 예약을 권장드립니다.</p>
           <Link className="btn btn--outline-brown btn--full" to="/location"><MapPin aria-hidden="true" size={18} /> 위치와 주차 확인</Link>
         </div>

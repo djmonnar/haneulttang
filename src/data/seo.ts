@@ -1,5 +1,6 @@
 import { menuCategories, menuItems } from './menu'
-import { store } from './store'
+import { photos } from './photos'
+import { seatingSummary, store } from './store'
 
 export const homeMeta = {
   title: '하늘땅 숯불갈비 | 백년가업 하늘땅 본점 · 진해 경화동',
@@ -44,9 +45,9 @@ export const siteStructuredData = {
       '@id': restaurantId,
       name: store.storeName,
       alternateName: store.alternateNames,
-      description: '하늘땅 숯불갈비는 진해 경화동 병암로 49에 있는 백년가업 하늘땅 본점입니다. 숯불 양념 돼지갈비, 소갈비, 한우 불고기를 판매하며 가족석·단체석·룸과 매장 전용 주차장을 갖추고 있습니다.',
+      description: `하늘땅 숯불갈비는 진해 경화동 병암로 49에 있는 백년가업 하늘땅 본점입니다. 숯불 양념 돼지갈비, 소갈비, 한우 불고기를 판매합니다. ${seatingSummary}. ${store.parking}.`,
       url: `${origin}/`,
-      image: `${origin}/og-image.jpg`,
+      image: [`${origin}/og-image.jpg`, ...[photos.porkGalbi, photos.beefGalbi, photos.bulgogi, photos.hall].map((photo) => `${origin}${photo.src}`)],
       telephone: '+82-55-541-5252',
       servesCuisine: ['한식', '숯불갈비'],
       address: {

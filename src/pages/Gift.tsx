@@ -1,6 +1,5 @@
 import { Building2, Gift as GiftIcon, PackageCheck, Phone } from 'lucide-react'
 import CtaBanner from '../components/CtaBanner'
-import ImagePlaceholder from '../components/ImagePlaceholder'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import { giftItems } from '../data/gifts'
@@ -25,8 +24,7 @@ export default function Gift() {
             {giftItems.map((item, index) => {
               const Icon = icons[index]
               return (
-                <article className="gift-card" key={item.id}>
-                  <ImagePlaceholder src={item.image} label={item.imageLabel} ratio="4 / 3" />
+                <article className="gift-card gift-card--text" key={item.id}>
                   <div className="gift-card__body">
                     <Icon aria-hidden="true" size={22} />
                     <h3>{item.name}</h3>

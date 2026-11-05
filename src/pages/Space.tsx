@@ -2,14 +2,15 @@ import { CalendarCheck } from 'lucide-react'
 import CtaBanner from '../components/CtaBanner'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
+import SeatingGuide from '../components/SeatingGuide'
 import { spaces, visitOccasions } from '../data/content'
-import { store } from '../data/store'
+import { seatingSummary, store } from '../data/store'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 export default function Space() {
   usePageMeta(
     '진해 가족 외식·단체 회식 공간 | 백년가업 하늘땅',
-    '새롭게 신축한 하늘땅 본점의 메인 홀, 가족석, 단체석, 프라이빗 룸과 전용 주차장을 실제 사진으로 확인하세요.',
+    `${seatingSummary}. ${store.parking}. 하늘땅 본점의 실제 매장 사진과 단체 모임 안내입니다.`,
   )
 
   return (
@@ -18,10 +19,11 @@ export default function Space() {
       <section className="section">
         <div className="container">
           <SectionHeading eyebrow="OUR SPACE" title="모임에 맞는 편안한 자리" description="실제 하늘땅 본점의 공간을 소개합니다." />
+          <SeatingGuide />
           <div className="space-gallery">
             {spaces.map((space, index) => (
               <figure className={`space-gallery__item ${index === 0 || index === 3 ? 'space-gallery__item--wide' : ''}`} key={space.id}>
-                <img src={space.image.src} alt={space.image.alt} width="1600" height="1067" loading={index < 2 ? 'eager' : 'lazy'} />
+                <img {...space.image} loading={index < 2 ? 'eager' : 'lazy'} />
                 <figcaption><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{space.title}</h3><p>{space.description}</p></div></figcaption>
               </figure>
             ))}

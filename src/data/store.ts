@@ -20,6 +20,12 @@ export interface StoreInfo {
   owner: string
   bizNumber: string
   parking: string
+  parkingMinimumSpaces: number
+  seating: {
+    roomMax: number
+    combinedRoomsMax: number
+    hall: number
+  }
   visitNote: string
   directions: string[]
   naverBookingUrl: string
@@ -42,6 +48,7 @@ export interface StoreInfo {
 }
 
 const placeQuery = encodeURIComponent('백년가업 하늘땅 본점')
+const parkingMinimumSpaces = 20
 export const store: StoreInfo = {
   brandName: '백년가업 하늘땅',
   storeName: '백년가업 하늘땅 본점',
@@ -63,7 +70,9 @@ export const store: StoreInfo = {
   },
   owner: '박동철',
   bizNumber: '119-07-94650',
-  parking: '전용 주차장 이용 가능',
+  parking: `전용 주차장 ${parkingMinimumSpaces}대 이상 · 매장 앞 도로변 흰 선 구간 주차 가능`,
+  parkingMinimumSpaces,
+  seating: { roomMax: 23, combinedRoomsMax: 70, hall: 50 },
   visitNote: '가족 및 단체 방문 시 사전 예약을 권장드립니다.',
   directions: [
     '스타벅스와 탑텐 사이에서 우회전',
@@ -88,3 +97,11 @@ export const store: StoreInfo = {
   },
   canonicalOrigin: 'https://xn--wh1bu4c029b.com',
 }
+
+export const seatingDetails = [
+  { label: '룸', detail: `룸당 최대 ${store.seating.roomMax}명` },
+  { label: '룸 전체 개방 시', detail: `최대 ${store.seating.combinedRoomsMax}명` },
+  { label: '홀', detail: `${store.seating.hall}명` },
+]
+
+export const seatingSummary = `룸당 최대 ${store.seating.roomMax}명, 룸 전체 개방 시 최대 ${store.seating.combinedRoomsMax}명, 홀 ${store.seating.hall}명`

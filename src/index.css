@@ -326,6 +326,7 @@ p { text-wrap: pretty; }
 .menu-detail__meta strong { color: var(--wine); font-size: 20px; }
 .menu-detail__copy > p:last-child { margin-top: 19px; color: #655b54; }
 .lunch-section__layout { display: grid; grid-template-columns: 1fr 0.85fr; align-items: center; gap: 75px; }
+.lunch-section__layout--text { display: block; }
 .lunch-section img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
 .lunch-section h2 { margin-top: 16px; font-family: var(--serif); font-size: 38px; line-height: 1.5; }
 .menu-badge { display: inline-block; margin-top: 20px; padding: 5px 13px; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; font-weight: 750; border-radius: 999px; }
@@ -360,10 +361,12 @@ p { text-wrap: pretty; }
 .standard-detail--reverse img { order: 2; }
 .standard-detail img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
 .standard-detail > div { padding: 45px; }
+.standard-detail--text { display: block; }
 .standard-detail span { color: var(--gold); font-family: var(--serif); }
 .standard-detail h2 { margin-top: 11px; font-family: var(--serif); font-size: 30px; }
 .standard-detail p { margin-top: 12px; color: #6f655d; }
 .butchery-foundation__layout { display: grid; grid-template-columns: 0.8fr 1.2fr; align-items: center; gap: 72px; }
+.butchery-foundation__layout--text { display: block; }
 .butchery-foundation h2 { margin-top: 15px; font-family: var(--serif); font-size: 38px; line-height: 1.55; }
 .butchery-foundation p:last-child { margin-top: 20px; color: rgba(255, 255, 255, 0.65); }
 .butchery-foundation img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
@@ -375,6 +378,7 @@ p { text-wrap: pretty; }
 .gift-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
 .gift-card { display: grid; grid-template-columns: 0.95fr 1.05fr; background: var(--ivory); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-card); }
 .gift-card .img-frame { border-radius: 0; }
+.gift-card--text { display: block; }
 .gift-card__body { display: flex; flex-direction: column; align-items: flex-start; padding: 30px; }
 .gift-card__body > svg { color: var(--wine); }
 .gift-card h3 { margin-top: 14px; font-family: var(--serif); font-size: 22px; }
@@ -416,6 +420,19 @@ p { text-wrap: pretty; }
 .reservation-types { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 34px; }
 .reservation-types span { padding: 7px 15px; border: 1px solid var(--line); color: #655b54; font-size: 12px; border-radius: 999px; }
 .reservation-note { margin: 28px 0 20px; color: #6f655e; text-align: center; }
+
+.seating-guide { margin-block: 32px; }
+.seating-guide h2 { font-family: var(--sans); font-size: 22px; }
+.seating-guide dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 16px; padding-block: 22px; border-block: 1px solid var(--line); }
+.seating-guide dt { color: #655b54; font-size: 14px; }
+.seating-guide dd { margin-top: 6px; font-size: 20px; font-weight: 600; }
+.seating-guide > p { margin-top: 14px; font-size: 14px; }
+.seating-guide a { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 600px) {
+  .seating-guide dl { grid-template-columns: 1fr; gap: 14px; }
+  .seating-guide dl > div { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .seating-guide dd { margin-top: 0; font-size: 18px; }
+}
 
 .faq-summary { padding: 68px 0; border-bottom: 1px solid var(--line); background: var(--ivory); }
 .faq-summary h2 { margin-top: 10px; font-family: var(--serif); font-size: 32px; font-weight: 600; }

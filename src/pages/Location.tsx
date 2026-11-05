@@ -9,7 +9,7 @@ import { usePageMeta } from '../hooks/usePageMeta'
 export default function Location() {
   usePageMeta(
     '백년가업 하늘땅 위치·영업시간·주차',
-    '경남 창원시 진해구 병암로 49 백년가업 하늘땅 본점. 매일 11시부터 21시 30분까지 운영하며 전용 주차장을 이용할 수 있습니다.',
+    `${store.address} 백년가업 하늘땅 본점. 매일 11시부터 21시 30분까지 운영합니다. ${store.parking}.`,
   )
 
   return (
@@ -36,8 +36,8 @@ export default function Location() {
       </section>
       <section className="section section--ivory">
         <div className="container">
-          <SectionHeading eyebrow="PARKING" title="넉넉한 전용 주차장" description="가족과 단체 방문 시 매장 앞 주차장을 편리하게 이용하세요." />
-          <img className="parking-wide" src="/images/space/parking.jpg" alt="백년가업 하늘땅 본점 전용 주차장" width="1600" height="1067" loading="lazy" />
+          <SectionHeading eyebrow="PARKING" title={`전용 주차장 ${store.parkingMinimumSpaces}대 이상`} description="매장 앞 도로변 흰 선 구간에도 주차하실 수 있습니다." />
+          <img className="parking-wide" src="/images/hero/exterior.jpg" alt="백년가업 하늘땅 본점 외관과 매장 앞 주차장" width="1920" height="1280" loading="lazy" />
         </div>
       </section>
     </>

@@ -4,8 +4,9 @@ import BusinessStatus from '../components/BusinessStatus'
 import NaverMap from '../components/NaverMap'
 import { homeFaqItems } from '../data/faqs'
 import { homeMeta } from '../data/seo'
+import { photos } from '../data/photos'
 import { formatPrice, lunchMenus, signatureMenus } from '../data/menu'
-import { store } from '../data/store'
+import { seatingSummary, store } from '../data/store'
 import { usePageMeta } from '../hooks/usePageMeta'
 import './Home.css'
 
@@ -19,14 +20,15 @@ export default function Home() {
   return (
     <div className="home">
       <section className="home-hero" aria-labelledby="home-title">
-        <img
-          className="home-hero__photo"
-          src="/images/hero/galbi-2.jpg"
-          alt="하늘땅 숯불 위에서 굽고 있는 양념 돼지갈비"
-          width="1600"
-          height="1067"
-          fetchPriority="high"
-        />
+        <picture className="home-hero__visual">
+          <source media="(max-width: 700px)" srcSet={photos.porkGalbi.src} />
+          <img
+            className="home-hero__photo"
+            {...photos.charcoalTable}
+            alt="하늘땅의 숯불갈비와 곁들임 반찬"
+            fetchPriority="high"
+          />
+        </picture>
         <div className="container home-hero__content">
           <h1 id="home-title"><span>백년가업</span>하늘땅</h1>
           <p className="home-hero__location">진해 경화동 · 숯불갈비</p>
@@ -56,7 +58,7 @@ export default function Home() {
           </div>
           <div className="home-place__photos">
             <figure>
-              <img src="/images/space/main-hall.jpg" alt="테이블 좌석과 숯불 배기 시설이 있는 하늘땅 홀" width="1600" height="1067" loading="lazy" />
+              <img {...photos.hall} loading="lazy" />
               <figcaption>매장 내부</figcaption>
             </figure>
             <figure>
@@ -67,8 +69,8 @@ export default function Home() {
           <div className="home-place__info">
             <div className="home-place__visit">
               <dl>
-                <div><dt>좌석</dt><dd>가족석 · 단체석 · 룸</dd></div>
-                <div><dt>주차</dt><dd>매장 앞 전용 주차장</dd></div>
+                <div><dt>좌석</dt><dd>{seatingSummary}</dd></div>
+                <div><dt>주차</dt><dd>{store.parking}</dd></div>
               </dl>
             </div>
             <div className="home-place__booking">
@@ -92,7 +94,7 @@ export default function Home() {
             {signatureMenus.map((menu) => (
               <article className="home-menu__item" key={menu.id}>
                 <Link to="/menu" className="home-menu__photo" aria-label={`${menu.name} 메뉴 안내`}>
-                  <img src={menu.image} alt={menu.imageLabel} width="1280" height="853" loading="lazy" />
+                  <img src={menu.image} alt={menu.imageLabel} width="1920" height="1280" loading="lazy" />
                 </Link>
                 <div className="home-menu__name">
                   <h3>{menu.name}</h3>

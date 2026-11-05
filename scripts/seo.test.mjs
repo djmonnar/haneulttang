@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
+import { access, readFile } from 'node:fs/promises'
 import test from 'node:test'
 import { parse } from 'parse5'
-import { faqItems, menuItems, sitePages, store } from '../dist-ssr/entry-server.js'
+import { faqItems, menuItems, photos, sitePages, store } from '../dist-ssr/entry-server.js'
 import { attribute, elements, escapeHtml, safeJson, textContent } from './html.mjs'
 
 async function readPage(path) {
@@ -19,6 +19,21 @@ function structuredData(document) {
 }
 
 for (const { path } of sitePages) {
+  test(`${path}: only supplied photos, no repeated main-content photos`, async () => {
+    const document = await readPage(path)
+    const main = elements(document, (node) => node.tagName === 'main')[0]
+    const images = elements(main, (node) => node.tagName === 'img')
+    const sources = images.map((node) => attribute(node, 'src'))
+    const allowed = [...Object.values(photos).map((photo) => photo.src), '/images/hero/exterior.jpg']
+    assert.equal(new Set(sources).size, sources.length)
+    for (const image of images) {
+      const source = attribute(image, 'src')
+      assert.ok(allowed.includes(source), `Unverified photo: ${source}`)
+      assert.ok(attribute(image, 'alt'))
+      await access(new URL(`../dist${source}`, import.meta.url))
+    }
+  })
+
   test(`${path}: static content, unique metadata and restaurant identity`, async () => {
     const document = await readPage(path)
     const title = elements(document, (node) => node.tagName === 'title')
@@ -42,10 +57,43 @@ for (const { path } of sitePages) {
   })
 }
 
+test('Confirmed seating limits are consistent without inventing a combined total', async () => {
+  assert.deepEqual(store.seating, { roomMax: 23, combinedRoomsMax: 70, hall: 50 })
+  for (const path of ['/', '/space', '/reservation', '/faq']) {
+    const document = await readPage(path)
+    const main = elements(document, (node) => node.tagName === 'main')[0]
+    const text = textContent(main).replace(/\s/g, '')
+    for (const phrase of ['룸당최대23명', '룸전체개방시최대70명', '홀50명']) {
+      assert.ok(text.includes(phrase), `${path}: ${phrase}`)
+    }
+    assert.ok(!text.includes('120명'))
+  }
+})
+
+test('Confirmed parking information appears in visitor pages and FAQ', async () => {
+  assert.equal(store.parkingMinimumSpaces, 20)
+  for (const path of ['/', '/space', '/location', '/faq']) {
+    const document = await readPage(path)
+    const main = elements(document, (node) => node.tagName === 'main')[0]
+    const text = textContent(main)
+    assert.ok(text.includes('20대 이상'))
+    assert.ok(text.includes('흰 선 구간'))
+  }
+})
+
 test('Home: search name is visible, not just hidden metadata', async () => {
   const document = await readPage('/')
   assert.ok(textContent(elements(document, (node) => node.tagName === 'main')[0]).includes('하늘땅 숯불갈비'))
   assert.ok(textContent(elements(document, (node) => node.tagName === 'title')[0]).startsWith('하늘땅 숯불갈비'))
+})
+
+test('Home: mobile hero uses the supplied pork-galbi photo and a matching preload', async () => {
+  const document = await readPage('/')
+  const source = elements(document, (node) => node.tagName === 'source')[0]
+  assert.equal(attribute(source, 'media'), '(max-width: 700px)')
+  assert.equal(attribute(source, 'srcset'), photos.porkGalbi.src)
+  const preload = elements(document, (node) => node.tagName === 'link' && attribute(node, 'rel') === 'preload' && attribute(node, 'href') === photos.porkGalbi.src)[0]
+  assert.equal(attribute(preload, 'media'), '(max-width: 700px)')
 })
 
 test('Menu: offers and portions match the visible menu data', async () => {

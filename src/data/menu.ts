@@ -1,3 +1,5 @@
+import { photos } from './photos'
+
 export type MenuCategory = '고기류' | '점심특선' | '식사류'
 
 export interface MenuItem {
@@ -26,8 +28,8 @@ export const menuItems: MenuItem[] = [
     description:
       '은은하고 담백한 양념으로 남녀노소 오랜 시간 사랑받아 온 하늘땅의 대표 메뉴',
     signature: true,
-    image: '/images/menu/yangnyeom-galbi.jpg',
-    imageLabel: '하늘땅 숯불 양념 돼지갈비',
+    image: photos.porkGalbi.src,
+    imageLabel: photos.porkGalbi.alt,
   },
   {
     id: 'so-galbi',
@@ -38,8 +40,8 @@ export const menuItems: MenuItem[] = [
     description:
       '소고기의 풍부한 육즙과 부드러운 식감에 참숯 향을 더한 깊은 풍미',
     signature: true,
-    image: '/images/menu/so-galbi.jpg',
-    imageLabel: '하늘땅 숯불 양념 소갈비',
+    image: photos.beefGalbi.src,
+    imageLabel: photos.beefGalbi.alt,
   },
   {
     id: 'hanwoo-bulgogi',
@@ -50,8 +52,8 @@ export const menuItems: MenuItem[] = [
     description:
       '엄선한 한우와 깊은 육수가 서울식 불고기판에서 어우러지는 하늘땅의 시그니처',
     signature: true,
-    image: '/images/menu/hanwoo-bulgogi.jpg',
-    imageLabel: '서울식 불고기판에 담은 하늘땅 한우 불고기',
+    image: photos.bulgogi.src,
+    imageLabel: photos.bulgogi.alt,
   },
   {
     id: 'lunch-bulgogi',
@@ -61,8 +63,6 @@ export const menuItems: MenuItem[] = [
     price: 17000,
     description: '점심 시간에 부담 없이 즐기는 하늘땅식 서울 불고기',
     lunchBadge: true,
-    image: '/images/menu/lunch-bulgogi.jpg',
-    imageLabel: '서울식 불고기판의 한우 불고기 점심특선',
   },
   {
     id: 'doenjang',
