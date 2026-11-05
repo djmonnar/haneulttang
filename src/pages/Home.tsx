@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import BusinessStatus from '../components/BusinessStatus'
 import NaverMap from '../components/NaverMap'
 import { homeFaqItems } from '../data/faqs'
+import { homeMeta } from '../data/seo'
 import { formatPrice, lunchMenus, signatureMenus } from '../data/menu'
 import { store } from '../data/store'
 import { usePageMeta } from '../hooks/usePageMeta'
@@ -10,8 +11,8 @@ import './Home.css'
 
 export default function Home() {
   usePageMeta(
-    '백년가업 하늘땅 본점 | 진해 숯불갈비',
-    '진해 경화동에서 2대째 이어온 숯불갈비집, 백년가업 하늘땅 본점입니다. 돼지갈비, 소갈비, 한우 불고기 메뉴와 가격, 예약, 영업시간, 주차를 안내합니다.',
+    homeMeta.title,
+    homeMeta.description,
     '/',
   )
 
@@ -49,7 +50,7 @@ export default function Home() {
           <div className="home-place__heading">
             <div>
               <h2 id="home-place-title">하늘땅 이야기</h2>
-              <p>부모님이 하시던 갈비집을 이어<br />진해 경화동에서 2대째 운영하고 있습니다.</p>
+              <p>하늘땅 숯불갈비, 백년가업 하늘땅 본점입니다.<br />부모님이 하시던 갈비집을 이어 진해 경화동에서 2대째 운영하고 있습니다.</p>
             </div>
             <Link className="home-link" to="/brand">소개 더 보기 <ArrowRight aria-hidden="true" size={18} /></Link>
           </div>

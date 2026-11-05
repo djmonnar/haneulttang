@@ -14,6 +14,8 @@ const faqStructuredData = {
       url: `${store.canonicalOrigin}/faq`,
       name: `자주 묻는 질문 | ${store.storeName}`,
       inLanguage: 'ko-KR',
+      about: { '@id': `${store.canonicalOrigin}/#restaurant` },
+      isPartOf: { '@id': `${store.canonicalOrigin}/#website` },
       mainEntity: faqItems.map((item) => ({
         '@type': 'Question',
         name: item.question,
@@ -53,8 +55,8 @@ const quickFacts = [
 
 export default function Faq() {
   usePageMeta(
-    '자주 묻는 질문 | 백년가업 하늘땅 본점',
-    '하늘땅 본점의 영업시간, 브레이크타임, 위치와 주차, 네이버 예약, 전화 문의, 대표 메뉴와 단체 모임 정보를 확인하세요.',
+    '하늘땅 숯불갈비 FAQ | 주차·예약·룸·메뉴 가격',
+    '하늘땅 숯불갈비 본점의 위치, 영업시간과 브레이크타임, 전용 주차장, 네이버 예약, 룸·단체석, 메뉴 가격과 점심특선에 대한 답변입니다.',
     '/faq',
   )
   useStructuredData('faq-page', faqStructuredData)

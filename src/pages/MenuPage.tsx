@@ -4,13 +4,16 @@ import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import { formatPrice, lunchMenus, menuCategories, menuItems, signatureMenus } from '../data/menu'
 import { store } from '../data/store'
+import { menuStructuredData } from '../data/seo'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useStructuredData } from '../hooks/useStructuredData'
 
 export default function MenuPage() {
   usePageMeta(
-    '하늘땅 메뉴 | 돼지갈비·소갈비·한우 불고기',
-    '숯불 양념 돼지갈비 200g 17,000원, 소갈비, 서울식 한우 불고기와 점심특선까지 하늘땅의 메뉴와 가격을 안내합니다.',
+    '하늘땅 숯불갈비 메뉴·가격 | 돼지갈비·소갈비·한우 불고기',
+    `${signatureMenus.map((menu) => `${menu.name} ${menu.portion} ${formatPrice(menu.price)}`).join(', ')}. 하늘땅 숯불갈비 본점의 전체 메뉴와 점심특선을 안내합니다.`,
   )
+  useStructuredData('menu', menuStructuredData)
 
   return (
     <>
@@ -20,7 +23,7 @@ export default function MenuPage() {
           <SectionHeading eyebrow="SIGNATURE" title="세 가지 시그니처" description="하늘땅을 처음 찾으셨다면 세 가지 대표 메뉴부터 만나보세요." />
           <div className="menu-detail-list">
             {signatureMenus.map((menu, index) => (
-              <article className={`menu-detail ${index % 2 ? 'menu-detail--reverse' : ''}`} key={menu.id}>
+              <article className={`menu-detail ${index % 2 ? 'menu-detail--reverse' : ''}`} key={menu.id} id={menu.id}>
                 <img src={menu.image} alt={menu.imageLabel} width="1600" height="1067" loading={index === 0 ? 'eager' : 'lazy'} />
                 <div className="menu-detail__copy">
                   <p className="menu-detail__index">SIGNATURE {String(index + 1).padStart(2, '0')}</p>
@@ -61,7 +64,7 @@ export default function MenuPage() {
                 <h3 className="menu-board__category">{category}</h3>
                 <ul>
                   {menuItems.filter((item) => item.category === category).map((item) => (
-                    <li className="menu-board__row" key={item.id}>
+                    <li className="menu-board__row" key={item.id} id={item.signature ? undefined : item.id}>
                       <span className="menu-board__name">{item.name}{item.portion && <em className="menu-board__portion"> {item.portion}</em>}</span>
                       <span className="menu-board__dots" aria-hidden="true" />
                       <span className="menu-board__price">{formatPrice(item.price)}</span>

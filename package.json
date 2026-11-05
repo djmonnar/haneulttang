@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs && node --test scripts/seo.test.mjs",
+    "test:seo": "node --test scripts/seo.test.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -21,6 +22,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "oxlint": "^1.71.0",
+    "parse5": "^8.1.0",
     "typescript": "~6.0.2",
     "vite": "^8.1.1"
   }

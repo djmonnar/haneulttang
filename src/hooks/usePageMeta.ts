@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { store } from '../data/store'
+import { RenderMetadataContext } from '../seo/RenderMetadata'
 
 const setMeta = (selector: string, attribute: 'name' | 'property', key: string, content: string) => {
   let element = document.querySelector<HTMLMetaElement>(selector)
@@ -17,8 +19,12 @@ export function usePageMeta(
   canonicalPath?: string,
   noIndex = false,
 ) {
+  const { pathname } = useLocation()
+  const path = canonicalPath ?? pathname
+  const metadata = useContext(RenderMetadataContext)
+  if (metadata) metadata.page = { title, description, canonicalPath: path, noIndex }
+
   useEffect(() => {
-    const path = canonicalPath ?? window.location.pathname
     const canonicalUrl = `${store.canonicalOrigin}${path === '/' ? '/' : path}`
     document.title = title
 
@@ -32,7 +38,7 @@ export function usePageMeta(
       'meta[name="robots"]',
       'name',
       'robots',
-      noIndex ? 'noindex, nofollow' : 'index, follow',
+      noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large',
     )
 
     let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
@@ -42,5 +48,5 @@ export function usePageMeta(
       document.head.appendChild(canonical)
     }
     canonical.href = canonicalUrl
-  }, [canonicalPath, description, noIndex, title])
+  }, [path, description, noIndex, title])
 }

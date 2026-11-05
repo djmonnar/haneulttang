@@ -45,9 +45,12 @@ const getBusinessState = (): BusinessState => {
 }
 
 export default function BusinessStatus() {
-  const [state, setState] = useState(getBusinessState)
+  const [state, setState] = useState<BusinessState>({
+    kind: 'closed', label: '영업시간 안내', detail: `${store.openingHours.open}-${store.openingHours.close}`,
+  })
 
   useEffect(() => {
+    setState(getBusinessState())
     const timer = window.setInterval(() => setState(getBusinessState()), 60_000)
     return () => window.clearInterval(timer)
   }, [])

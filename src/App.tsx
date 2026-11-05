@@ -6,6 +6,7 @@ import MobileBottomBar from './components/MobileBottomBar'
 import ScrollToTop from './components/ScrollToTop'
 import ScrollReveal from './components/ScrollReveal'
 import Home from './pages/Home'
+import SiteStructuredData from './components/SiteStructuredData'
 
 const Brand = lazy(() => import('./pages/Brand'))
 const Greeting = lazy(() => import('./pages/Greeting'))
@@ -24,6 +25,7 @@ const Legal = lazy(() => import('./pages/Legal'))
 export default function App() {
   return (
     <>
+      <SiteStructuredData />
       <ScrollToTop />
       <ScrollReveal />
       <Header />

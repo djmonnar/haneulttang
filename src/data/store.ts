@@ -1,6 +1,8 @@
 export interface StoreInfo {
   brandName: string
   storeName: string
+  searchName: string
+  alternateNames: string[]
   slogan: string
   address: string
   lotAddress: string
@@ -27,6 +29,7 @@ export interface StoreInfo {
     longitude: number
   }
   naverMapUrl: string
+  naverPlaceUrl: string
   kakaoMapUrl: string
   kakaoChannelUrl: string | null
   naverReviewUrl: string | null
@@ -42,6 +45,8 @@ const placeQuery = encodeURIComponent('백년가업 하늘땅 본점')
 export const store: StoreInfo = {
   brandName: '백년가업 하늘땅',
   storeName: '백년가업 하늘땅 본점',
+  searchName: '하늘땅 숯불갈비',
+  alternateNames: ['하늘땅', '하늘땅 숯불갈비', '하늘땅숯불갈비', '하늘땅 본점'],
   slogan: '진해 경화동 숯불갈비',
   address: '경남 창원시 진해구 병암로 49',
   lotAddress: '경남 창원시 진해구 경화동 883-3',
@@ -72,6 +77,7 @@ export const store: StoreInfo = {
     longitude: 128.6924111,
   },
   naverMapUrl: `https://map.naver.com/p/search/${placeQuery}`,
+  naverPlaceUrl: 'https://map.naver.com/p/entry/place/38241126',
   kakaoMapUrl: `https://map.kakao.com/?q=${placeQuery}`,
   kakaoChannelUrl: null,
   naverReviewUrl: null,

@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/butchery",
+      "destination": "/standards",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [
         {
@@ -50,5 +55,19 @@
       "permanent": true
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/brand", "destination": "/brand.html" },
+    { "source": "/brand/greeting", "destination": "/brand/greeting.html" },
+    { "source": "/menu", "destination": "/menu.html" },
+    { "source": "/space", "destination": "/space.html" },
+    { "source": "/standards", "destination": "/standards.html" },
+    { "source": "/gift", "destination": "/gift.html" },
+    { "source": "/reservation", "destination": "/reservation.html" },
+    { "source": "/business", "destination": "/business.html" },
+    { "source": "/location", "destination": "/location.html" },
+    { "source": "/news", "destination": "/news.html" },
+    { "source": "/faq", "destination": "/faq.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" }
+  ]
 }

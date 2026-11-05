@@ -1,3 +1,6 @@
+import { formatPrice, lunchMenus, signatureMenus } from './menu'
+import { store } from './store'
+
 export type FaqCategory = '방문 안내' | '예약 안내' | '메뉴와 공간'
 
 export interface FaqItem {
@@ -7,6 +10,11 @@ export interface FaqItem {
 }
 
 export const faqItems: FaqItem[] = [
+  {
+    category: '방문 안내',
+    question: '하늘땅 숯불갈비와 백년가업 하늘땅 본점은 같은 곳인가요?',
+    answer: `네, 같은 매장입니다. 하늘땅 숯불갈비는 ${store.address}에 있는 ${store.storeName}입니다. 전화번호는 ${store.phone}이며, 공식 홈페이지는 하늘땅.com입니다.`,
+  },
   {
     category: '방문 안내',
     question: '백년가업 하늘땅 본점은 어디에 있나요?',
@@ -49,6 +57,16 @@ export const faqItems: FaqItem[] = [
   },
   {
     category: '메뉴와 공간',
+    question: '하늘땅 숯불갈비의 메뉴 가격과 중량은 어떻게 되나요?',
+    answer: `${signatureMenus.map((menu) => `${menu.name}는 ${menu.portion}에 ${formatPrice(menu.price)}`).join(', ')}입니다. 전체 메뉴는 홈페이지 메뉴 안내에서 확인하실 수 있습니다. 가격과 중량은 매장 운영 상황에 따라 변경될 수 있습니다.`,
+  },
+  {
+    category: '메뉴와 공간',
+    question: '점심특선도 있나요?',
+    answer: `${lunchMenus.map((menu) => `${menu.name}은 ${menu.portion}에 ${formatPrice(menu.price)}`).join(', ')}입니다. 매일 오전 11시에 문을 열며 브레이크타임은 오후 3시부터 5시까지입니다.`,
+  },
+  {
+    category: '메뉴와 공간',
     question: '하늘땅의 대표 메뉴는 무엇인가요?',
     answer: '숯불 양념 돼지갈비가 대표 메뉴이며, 숯불 양념 소갈비와 한우 불고기도 하늘땅의 시그니처 메뉴입니다. 엄선한 원육과 직접 준비한 양념, 참숯 향의 조화를 중요하게 생각합니다.',
   },
@@ -69,4 +87,4 @@ export const faqItems: FaqItem[] = [
   },
 ]
 
-export const homeFaqItems = faqItems.slice(0, 5)
+export const homeFaqItems = faqItems.slice(0, 6)
