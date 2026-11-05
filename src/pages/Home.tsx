@@ -1,4 +1,4 @@
-import { ArrowRight, CalendarCheck, Phone } from 'lucide-react'
+import { ArrowRight, CalendarCheck, MessageCircle, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import BusinessStatus from '../components/BusinessStatus'
 import NaverMap from '../components/NaverMap'
@@ -155,6 +155,7 @@ export default function Home() {
               <div className="home-location__actions">
                 <a href={store.naverBookingUrl} className="home-button" target="_blank" rel="noreferrer"><CalendarCheck aria-hidden="true" size={18} /> 네이버 예약</a>
                 <a href={store.telLink} className="home-button home-button--outline"><Phone aria-hidden="true" size={18} /> 전화 문의</a>
+                {store.kakaoChannelUrl && <a href={store.kakaoChannelUrl} className="home-button home-button--outline" target="_blank" rel="noreferrer"><MessageCircle aria-hidden="true" size={18} /> 카카오톡 상담</a>}
               </div>
               <div className="home-location__map-links">
                 <a href={store.naverMapUrl} target="_blank" rel="noreferrer">네이버지도 <ArrowRight aria-hidden="true" size={16} /></a>

@@ -26,7 +26,7 @@ export const menuItems: MenuItem[] = [
     portion: '200g',
     price: 17000,
     description:
-      '은은하고 담백한 양념으로 남녀노소 오랜 시간 사랑받아 온 하늘땅의 대표 메뉴',
+      '은은하고 담백한 양념의 돼지갈비. 오랫동안 사랑받아 온 하늘땅의 대표 메뉴입니다.',
     signature: true,
     image: photos.porkGalbi.src,
     imageLabel: photos.porkGalbi.alt,
@@ -38,7 +38,7 @@ export const menuItems: MenuItem[] = [
     portion: '200g',
     price: 29000,
     description:
-      '소고기의 풍부한 육즙과 부드러운 식감에 참숯 향을 더한 깊은 풍미',
+      '부드러운 소갈비에 양념을 더했습니다. 참숯에 구워 숯 향과 함께 드시는 메뉴입니다.',
     signature: true,
     image: photos.beefGalbi.src,
     imageLabel: photos.beefGalbi.alt,
@@ -50,7 +50,7 @@ export const menuItems: MenuItem[] = [
     portion: '150g',
     price: 22000,
     description:
-      '엄선한 한우와 깊은 육수가 서울식 불고기판에서 어우러지는 하늘땅의 시그니처',
+      '한우와 육수를 서울식 불고기판에 담아 끓여 먹습니다.',
     signature: true,
     image: photos.bulgogi.src,
     imageLabel: photos.bulgogi.alt,
@@ -61,7 +61,7 @@ export const menuItems: MenuItem[] = [
     name: '한우 불고기 점심특선',
     portion: '120g',
     price: 17000,
-    description: '점심 시간에 부담 없이 즐기는 하늘땅식 서울 불고기',
+    description: '하늘땅식 서울 불고기를 점심특선으로 준비했습니다.',
     lunchBadge: true,
   },
   {

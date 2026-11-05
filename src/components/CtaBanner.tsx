@@ -1,4 +1,4 @@
-import { CalendarCheck, MapPin, Phone } from 'lucide-react'
+import { CalendarCheck, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { store } from '../data/store'
 
@@ -8,14 +8,13 @@ interface Props {
 }
 
 export default function CtaBanner({
-  title = '소중한 자리, 미리 준비해 드립니다',
-  description = '네이버 예약 또는 전화 문의로 편리하게 자리를 준비하세요.',
+  title = '예약·문의',
+  description = '예약은 네이버에서, 상담은 전화나 카카오톡으로 하실 수 있습니다.',
 }: Props) {
   return (
     <section className="cta-banner">
       <div className="container cta-banner__inner">
         <div>
-          <p className="cta-banner__eyebrow">RESERVATION</p>
           <h2 className="cta-banner__title">{title}</h2>
           <p className="cta-banner__desc">{description}</p>
         </div>
@@ -26,6 +25,11 @@ export default function CtaBanner({
           <a className="btn btn--outline-light" href={store.telLink}>
             <Phone aria-hidden="true" size={18} /> 전화 문의
           </a>
+          {store.kakaoChannelUrl && (
+            <a className="btn btn--outline-light" href={store.kakaoChannelUrl} target="_blank" rel="noreferrer">
+              <MessageCircle aria-hidden="true" size={18} /> 카카오톡 상담
+            </a>
+          )}
           <Link className="btn btn--outline-light" to="/location">
             <MapPin aria-hidden="true" size={18} /> 오시는 길
           </Link>

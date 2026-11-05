@@ -1,4 +1,4 @@
-import { Building2, Gift as GiftIcon, PackageCheck, Phone } from 'lucide-react'
+import { Building2, Gift as GiftIcon, MessageCircle, PackageCheck, Phone } from 'lucide-react'
 import CtaBanner from '../components/CtaBanner'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
@@ -11,15 +11,15 @@ const icons = [GiftIcon, PackageCheck, GiftIcon, Building2]
 export default function Gift() {
   usePageMeta(
     '하늘땅 선물세트 | 양념갈비·단체 주문 문의',
-    '하늘땅 양념돼지갈비 세트, 가족 포장세트, 명절 선물세트와 기업 단체 주문 구성을 전화로 상담해 드립니다.',
+    '하늘땅 양념돼지갈비 세트, 가족 포장세트, 명절 선물세트와 기업 단체 주문 구성을 전화 또는 카카오톡으로 문의해 주세요.',
   )
 
   return (
     <>
-      <PageHero eyebrow="GIFT SET" title="하늘땅 선물세트" description="하늘땅의 정성을 소중한 분께 전하세요" />
+      <PageHero eyebrow="GIFT SET" title="하늘땅 선물세트" description="가정용 포장부터 명절·단체 선물까지 문의해 주세요." />
       <section className="section">
         <div className="container">
-          <SectionHeading eyebrow="OUR GIFT" title="마음에 맞춰 준비하는 구성" description="구성과 수량은 주문 목적에 맞춰 전화로 상담해 드립니다." />
+          <SectionHeading title="선물·포장 구성" description="필요한 수량과 수령 일정을 전화나 카카오톡으로 알려주세요." />
           <div className="gift-grid">
             {giftItems.map((item, index) => {
               const Icon = icons[index]
@@ -41,11 +41,12 @@ export default function Gift() {
       <section className="section section--ivory gift-guide">
         <div className="container container--narrow">
           <SectionHeading eyebrow="ORDER GUIDE" title="주문 안내" />
-          <ol><li><span>01</span><div><h3>용도와 수량 상담</h3><p>가정용, 명절 선물, 기업 단체 주문 등 목적과 수량을 알려주세요.</p></div></li><li><span>02</span><div><h3>구성과 일정 확인</h3><p>가능한 구성과 포장, 수령 일정을 전화로 안내해 드립니다.</p></div></li><li><span>03</span><div><h3>주문 확정</h3><p>상담한 내용에 따라 정성껏 준비해 드립니다.</p></div></li></ol>
+          <ol><li><span>01</span><div><h3>용도와 수량 상담</h3><p>가정용, 명절 선물, 기업 단체 주문 등 목적과 수량을 알려주세요.</p></div></li><li><span>02</span><div><h3>구성과 일정 확인</h3><p>가능한 구성과 포장, 수령 일정을 안내해 드립니다.</p></div></li><li><span>03</span><div><h3>주문 확정</h3><p>상담한 구성과 일정에 맞춰 준비합니다.</p></div></li></ol>
           <a className="btn btn--wine btn--full" href={store.telLink}><Phone aria-hidden="true" size={18} /> 선물세트 전화 문의 {store.phone}</a>
+          {store.kakaoChannelUrl && <a className="btn btn--kakao btn--full" href={store.kakaoChannelUrl} target="_blank" rel="noreferrer"><MessageCircle aria-hidden="true" size={18} /> 선물세트 카카오톡 상담</a>}
         </div>
       </section>
-      <CtaBanner title="선물의 용도와 수량을 알려주세요" description="구성과 가격은 전화 상담 후 정확하게 안내해 드립니다." />
+      <CtaBanner title="선물세트 문의" description="구성과 가격은 전화 또는 카카오톡으로 상담해 드립니다." />
     </>
   )
 }

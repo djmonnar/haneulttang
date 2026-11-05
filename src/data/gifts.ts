@@ -12,7 +12,7 @@ export const giftItems: GiftItem[] = [
     id: 'yangnyeom-set',
     name: '양념갈비 세트',
     description:
-      '하늘땅의 대표 숯불 양념갈비를 집에서도 즐길 수 있도록 정성껏 포장한 세트입니다. 정육 기반의 원육 선별과 숙성 노하우를 그대로 담았습니다.',
+      '하늘땅의 숯불 양념갈비를 집에서도 드실 수 있는 포장 세트입니다. 정육 경험을 바탕으로 원육을 고르고 숙성해 준비합니다.',
     price: null,
     tags: ['대표 상품', '가정용'],
   },
@@ -28,7 +28,7 @@ export const giftItems: GiftItem[] = [
     id: 'holiday-set',
     name: '명절 선물세트',
     description:
-      '설·추석 명절, 소중한 분께 마음을 전하는 프리미엄 갈비 선물세트입니다. 명절 시즌 사전 예약을 권장드립니다.',
+      '설·추석에 선물하실 수 있는 갈비 세트입니다. 명절에는 사전 예약을 권합니다.',
     price: null,
     tags: ['명절', '선물'],
   },

@@ -95,6 +95,8 @@ p { text-wrap: pretty; }
 .btn--outline-gold { border-color: var(--gold); color: var(--gold); }
 .btn--naver { background: #03c75a; color: white; }
 .btn--naver:hover { background: #02ad4e; }
+.btn--kakao { background: #fee500; color: #191919; }
+.btn--kakao:hover { background: #f3d900; }
 
 .header {
   position: fixed;

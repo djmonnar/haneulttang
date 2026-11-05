@@ -1,4 +1,4 @@
-import { Clock3, MapPin, Phone } from 'lucide-react'
+import { Clock3, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import BrandSeal from './BrandSeal'
 import { store } from '../data/store'
@@ -38,6 +38,7 @@ export default function Footer() {
           <h2>{store.storeName}</h2>
           <p><MapPin aria-hidden="true" size={17} /> {store.address}</p>
           <p><Phone aria-hidden="true" size={17} /> <a href={store.telLink}>{store.phone}</a></p>
+          {store.kakaoChannelUrl && <p><MessageCircle aria-hidden="true" size={17} /> <a href={store.kakaoChannelUrl} target="_blank" rel="noreferrer">카카오톡 상담</a></p>}
           <p><Clock3 aria-hidden="true" size={17} /> 매일 11:00-21:30</p>
           <p className="footer__hours-detail">브레이크타임 15:00-17:00 · 라스트오더 20:00</p>
           <p>{store.parking}</p>

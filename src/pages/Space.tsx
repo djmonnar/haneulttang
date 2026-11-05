@@ -15,10 +15,10 @@ export default function Space() {
 
   return (
     <>
-      <PageHero eyebrow="SPACE" title="새로워진 공간" description="맛의 깊이는 그대로, 식사의 편안함은 한층 더" />
+      <PageHero eyebrow="SPACE" title="매장 안내" description="가족 식사와 단체 모임을 위한 홀·룸을 안내합니다." />
       <section className="section">
         <div className="container">
-          <SectionHeading eyebrow="OUR SPACE" title="모임에 맞는 편안한 자리" description="실제 하늘땅 본점의 공간을 소개합니다." />
+          <SectionHeading title="홀과 룸" description="하늘땅 본점의 매장 사진입니다." />
           <SeatingGuide />
           <div className="space-gallery">
             {spaces.map((space, index) => (
@@ -33,7 +33,7 @@ export default function Space() {
 
       <section className="section section--ivory">
         <div className="container">
-          <SectionHeading eyebrow="FOR YOUR MOMENT" title="방문 목적별 추천" />
+          <SectionHeading title="가족·단체 모임" />
           <div className="occasion-grid">
             {visitOccasions.map((item, index) => (
               <article className="occasion-item" key={item.title}>
@@ -44,7 +44,7 @@ export default function Space() {
           </div>
         </div>
       </section>
-      <CtaBanner title="모임에 맞는 자리를 준비해 드립니다" description="인원과 모임 성격을 알려주시면 편안한 좌석을 안내해 드립니다." />
+      <CtaBanner title="단체로 방문하시나요?" description="인원과 날짜를 알려주시면 이용 가능한 좌석을 안내해 드립니다." />
     </>
   )
 }

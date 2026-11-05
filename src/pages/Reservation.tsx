@@ -1,4 +1,4 @@
-import { CalendarCheck, Clock3, ExternalLink, MapPin, Phone, UsersRound } from 'lucide-react'
+import { CalendarCheck, Clock3, ExternalLink, MapPin, MessageCircle, Phone, UsersRound } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import BusinessStatus from '../components/BusinessStatus'
 import PageHero from '../components/PageHero'
@@ -14,14 +14,15 @@ export default function Reservation() {
 
   return (
     <>
-      <PageHero eyebrow="RESERVATION" title="예약 안내" description="네이버 예약과 전화 문의를 편리하게 이용하세요" />
+      <PageHero eyebrow="RESERVATION" title="예약 안내" description="예약은 네이버에서, 상담은 전화나 카카오톡으로 해주세요." />
       <section className="section reservation-page">
         <div className="container container--narrow">
           <BusinessStatus />
-          <SectionHeading eyebrow="NAVER RESERVATION" title="네이버에서 간편하게 예약하세요" description="방문 날짜와 시간, 인원을 선택해 편리하게 예약하실 수 있습니다." />
+          <SectionHeading title="네이버 예약" description="방문 날짜와 시간, 인원을 선택해 예약하실 수 있습니다." />
           <div className="reservation-actions">
             <a className="reservation-booking" href={store.naverBookingUrl} target="_blank" rel="noreferrer"><CalendarCheck aria-hidden="true" size={26} /><span>온라인 예약</span><strong>네이버 예약</strong><ExternalLink aria-hidden="true" size={18} /></a>
             <a className="reservation-call" href={store.telLink}><Phone aria-hidden="true" size={26} /><span>전화 문의</span><strong>{store.phone}</strong></a>
+            {store.kakaoChannelUrl && <a className="btn btn--outline-brown btn--full" href={store.kakaoChannelUrl} target="_blank" rel="noreferrer"><MessageCircle aria-hidden="true" size={20} /> 카카오톡 상담</a>}
           </div>
           <div className="reservation-guide">
             <article><CalendarCheck aria-hidden="true" /><h3>날짜와 시간</h3><p>방문하실 날짜와 시간을 알려주세요.</p></article>
@@ -30,7 +31,7 @@ export default function Reservation() {
           </div>
           <div className="reservation-types">{reservationTypes.map((type) => <span key={type}>{type}</span>)}</div>
           <SeatingGuide />
-          <p className="reservation-note">가족 및 단체 방문은 원활한 자리 준비를 위해 사전 예약을 권장드립니다.</p>
+          <p className="reservation-note">가족·단체 방문은 사전 예약을 권합니다.</p>
           <Link className="btn btn--outline-brown btn--full" to="/location"><MapPin aria-hidden="true" size={18} /> 위치와 주차 확인</Link>
         </div>
       </section>

@@ -1,5 +1,4 @@
 interface Props {
-  /** 골드 컬러의 짧은 상단 라벨, 예: "SIGNATURE" */
   eyebrow?: string
   title: string
   description?: string
@@ -9,7 +8,6 @@ interface Props {
 }
 
 export default function SectionHeading({
-  eyebrow,
   title,
   description,
   align = 'center',
@@ -21,7 +19,6 @@ export default function SectionHeading({
         onDark ? 'section-heading--dark' : ''
       }`}
     >
-      {eyebrow && <p className="section-heading__eyebrow">{eyebrow}</p>}
       <h2 className="section-heading__title">{title}</h2>
       <span className="section-heading__line" aria-hidden="true" />
       {description && <p className="section-heading__desc">{description}</p>}

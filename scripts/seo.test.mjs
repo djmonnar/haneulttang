@@ -121,6 +121,40 @@ test('FAQ: every schema answer is present in the non-JavaScript HTML', async () 
   }
 })
 
+test('Kakao chat: real contact links preserve separate booking and phone actions', async () => {
+  assert.equal(store.kakaoChannelUrl, 'https://pf.kakao.com/_wGfmX/chat')
+  for (const path of ['/', '/menu', '/reservation', '/gift', '/business', '/faq']) {
+    const document = await readPage(path)
+    const links = elements(document, (node) => node.tagName === 'a')
+    const chats = links.filter((node) => attribute(node, 'href') === store.kakaoChannelUrl)
+    assert.ok(chats.length > 0, `${path}: missing chat link`)
+    for (const link of chats) {
+      assert.ok(textContent(link).includes('카카오톡'))
+      assert.equal(attribute(link, 'target'), '_blank')
+      assert.ok(attribute(link, 'rel').includes('noreferrer'))
+    }
+    assert.ok(links.some((node) => attribute(node, 'href') === store.telLink))
+    assert.ok(links.some((node) => attribute(node, 'href') === store.naverBookingUrl))
+  }
+  const document = await readPage('/business')
+  const main = elements(document, (node) => node.tagName === 'main')[0]
+  assert.equal(elements(main, (node) => node.tagName === 'form').length, 0)
+  assert.ok(!textContent(main).includes('문의가 접수되었습니다'))
+  const restaurant = structuredData(document).find((node) => node['@type'] === 'Restaurant')
+  assert.ok(restaurant.sameAs.includes('https://pf.kakao.com/_wGfmX'))
+})
+
+test('Copy: generic advertising slogans are absent from rendered visitor pages', async () => {
+  for (const { path } of sitePages) {
+    const document = await readPage(path)
+    const main = elements(document, (node) => node.tagName === 'main')[0]
+    const text = textContent(main)
+    for (const phrase of ['세 가지 시그니처', '시간이 증명한 진짜', '공간의 품격', '새롭게 신축한', '정육 기반 브랜드의 가능성']) {
+      assert.ok(!text.includes(phrase), `${path}: stale copy ${phrase}`)
+    }
+  }
+})
+
 test('404 is noindex and hosting does not rewrite unknown paths to the homepage', async () => {
   const document = await readPage('/404')
   const robots = elements(document, (node) => attribute(node, 'name') === 'robots')[0]

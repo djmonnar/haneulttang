@@ -65,7 +65,7 @@ export const siteStructuredData = {
       acceptsReservations: store.naverBookingUrl,
       hasMenu: { '@id': `${origin}/menu#menu` },
       hasMap: store.naverPlaceUrl,
-      sameAs: [store.naverPlaceUrl],
+      sameAs: [store.naverPlaceUrl, ...(store.kakaoChannelUrl ? [store.kakaoChannelUrl.replace(/\/chat$/, '')] : [])],
     },
   ],
 }

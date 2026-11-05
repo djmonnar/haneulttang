@@ -9,36 +9,34 @@ import { photos } from '../data/photos'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 const values = [
-  '부모님의 손맛과 철학을 잇는 마음',
-  '유행보다 오래 지켜온 맛의 기준',
+  '부모님께 배운 손맛과 철학',
+  '원육과 양념을 준비하는 기준',
   '가족이 안심하고 찾는 식사 공간',
-  '다음 세대에도 전하고 싶은 한 끼',
+  '다음 세대에도 이어가고 싶은 가업',
 ] as const
 
 export default function Brand() {
   usePageMeta(
     '2대를 이어온 숯불갈비 | 백년가업 하늘땅 이야기',
-    '부모님의 손맛과 철학을 이어 2대째 가업을 지키는 백년가업 하늘땅의 이야기와 새로 지은 공간을 소개합니다.',
+    '부모님의 손맛과 철학을 이어 2대째 운영하는 백년가업 하늘땅. 매장 이야기와 홀·룸을 소개합니다.',
   )
 
   return (
     <>
-      <PageHero eyebrow="BRAND STORY" title="하늘땅 이야기" description="한 끼의 맛이 가업이 되기까지" />
+      <PageHero eyebrow="BRAND STORY" title="하늘땅 이야기" description="부모님이 하시던 갈비집을 이어 2대째 운영하고 있습니다." />
       <BrandSubnav />
 
       <section className="section">
         <div className="container story-layout story-layout--brand">
           <figure className="story-visual">
-            <img src="/images/hero/exterior.jpg" alt="새롭게 신축한 백년가업 하늘땅 본점 외관" width="1600" height="1067" />
+            <img src="/images/hero/exterior.jpg" alt="백년가업 하늘땅 본점 외관" width="1600" height="1067" />
             <figcaption>
               <span>2대째</span>
               <strong>부모님의 손맛과 철학을 이어갑니다</strong>
             </figcaption>
           </figure>
           <div className="story-copy">
-            <p className="section-kicker">TWO GENERATIONS</p>
             <h2>부모님의 손맛에서<br />오늘의 하늘땅까지</h2>
-            <blockquote>“2대를 이어온 손맛과 철학 위에,<br />새로워진 공간의 품격을 더했습니다.”</blockquote>
             {brandStoryParagraphs.slice(0, 3).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <Link className="text-link" to="/brand/greeting">대표 인사말 읽기 <ArrowRight aria-hidden="true" size={17} /></Link>
           </div>
@@ -62,10 +60,9 @@ export default function Brand() {
       <section className="section brand-renewal">
         <div className="container brand-renewal__layout">
           <div className="brand-renewal__copy">
-            <p className="section-kicker">A NEW CHAPTER</p>
-            <h2>맛은 지키고,<br />공간은 새롭게</h2>
+            <h2>가족 식사부터<br />단체 모임까지</h2>
             <p>{brandStoryParagraphs[3]}</p>
-            <p>오랜 시간 찾아주신 분들이 더 편안하게 식사하고, 가족과 단체 모임을 여유롭게 이어갈 수 있도록 새 매장을 지었습니다.</p>
+            <p>가족 외식과 단체 모임에 맞춰 홀과 룸을 운영합니다.</p>
             <ul>{values.map((value) => <li key={value}><Check aria-hidden="true" size={18} /> {value}</li>)}</ul>
           </div>
           <div className="brand-renewal__images">

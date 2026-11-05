@@ -17,16 +17,15 @@ export default function MenuPage() {
 
   return (
     <>
-      <PageHero eyebrow="MENU" title="하늘땅 메뉴" description="엄선한 원육, 정성껏 만든 양념, 참숯의 깊은 향" />
+      <PageHero eyebrow="MENU" title="하늘땅 메뉴" description="돼지갈비, 소갈비, 한우 불고기를 준비합니다." />
       <section className="section">
         <div className="container">
-          <SectionHeading eyebrow="SIGNATURE" title="세 가지 시그니처" description="하늘땅을 처음 찾으셨다면 세 가지 대표 메뉴부터 만나보세요." />
+          <SectionHeading title="대표 메뉴" />
           <div className="menu-detail-list">
             {signatureMenus.map((menu, index) => (
               <article className={`menu-detail ${index % 2 ? 'menu-detail--reverse' : ''}`} key={menu.id} id={menu.id}>
                   <img src={menu.image} alt={menu.imageLabel} width="1920" height="1280" loading={index === 0 ? 'eager' : 'lazy'} />
                 <div className="menu-detail__copy">
-                  <p className="menu-detail__index">SIGNATURE {String(index + 1).padStart(2, '0')}</p>
                   <h2>{menu.name}</h2>
                   <p className="menu-detail__meta"><span>{menu.portion}</span><strong>{formatPrice(menu.price)}</strong></p>
                   <p>{menu.description}</p>
@@ -40,12 +39,10 @@ export default function MenuPage() {
       <section className="section section--charcoal lunch-section">
         <div className="container container--narrow lunch-section__layout lunch-section__layout--text">
           <div>
-            <p className="section-kicker">LUNCH SPECIAL</p>
             <span className="menu-badge">점심특선</span>
-            <h2>점심에도 즐기는<br />하늘땅식 서울 불고기</h2>
+            <h2>한우 불고기 점심특선</h2>
             {lunchMenus.map((menu) => (
               <div className="lunch-section__menu" key={menu.id}>
-                <h3>{menu.name}</h3>
                 <p>{menu.description}</p>
                 <strong>{menu.portion} · {formatPrice(menu.price)}</strong>
               </div>

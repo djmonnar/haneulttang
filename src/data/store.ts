@@ -88,7 +88,7 @@ export const store: StoreInfo = {
   naverMapUrl: `https://map.naver.com/p/search/${placeQuery}`,
   naverPlaceUrl: 'https://map.naver.com/p/entry/place/38241126',
   kakaoMapUrl: `https://map.kakao.com/?q=${placeQuery}`,
-  kakaoChannelUrl: null,
+  kakaoChannelUrl: 'https://pf.kakao.com/_wGfmX/chat',
   naverReviewUrl: null,
   socialLinks: {
     instagram: null,
