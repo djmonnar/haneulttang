@@ -100,7 +100,7 @@ export default function Header() {
             </a>
             <a className="header__drawer-call" href={store.telLink} tabIndex={open ? 0 : -1}>
               <Phone aria-hidden="true" size={19} />
-              전화 문의 {store.phone}
+              전화 문의
             </a>
           </div>
         </div>

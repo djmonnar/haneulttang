@@ -87,6 +87,16 @@ test('Home: search name is visible, not just hidden metadata', async () => {
   assert.ok(textContent(elements(document, (node) => node.tagName === 'title')[0]).startsWith('하늘땅 숯불갈비'))
 })
 
+test('Mobile navigation: phone action has a compact label and retains its dial link', async () => {
+  const document = await readPage('/')
+  const call = elements(document, (node) => attribute(node, 'class') === 'header__drawer-call')[0]
+  assert.ok(call)
+  assert.equal(textContent(call).trim(), '전화 문의')
+  assert.equal(attribute(call, 'href'), store.telLink)
+  const booking = elements(document, (node) => attribute(node, 'class') === 'header__drawer-booking')[0]
+  assert.equal(attribute(booking, 'href'), store.naverBookingUrl)
+})
+
 test('Home: mobile hero uses the supplied pork-galbi photo and a matching preload', async () => {
   const document = await readPage('/')
   const source = elements(document, (node) => node.tagName === 'source')[0]
