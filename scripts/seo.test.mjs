@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { access, readFile } from 'node:fs/promises'
 import test from 'node:test'
 import { parse } from 'parse5'
-import { faqItems, menuItems, photos, sitePages, store } from '../dist-ssr/entry-server.js'
+import { faqItems, heroSlides, heroSlideIndex, heroIntervalMs, menuItems, photos, sitePages, store } from '../dist-ssr/entry-server.js'
 import { attribute, elements, escapeHtml, safeJson, textContent } from './html.mjs'
 
 async function readPage(path) {
@@ -94,6 +94,26 @@ test('Home: mobile hero uses the supplied pork-galbi photo and a matching preloa
   assert.equal(attribute(source, 'srcset'), photos.porkGalbi.src)
   const preload = elements(document, (node) => node.tagName === 'link' && attribute(node, 'rel') === 'preload' && attribute(node, 'href') === photos.porkGalbi.src)[0]
   assert.equal(attribute(preload, 'media'), '(max-width: 700px)')
+})
+
+test('Home: slideshow keeps the first photo in static HTML and only uses supplied photos', async () => {
+  const document = await readPage('/')
+  const hero = elements(document, (node) => attribute(node, 'class')?.split(' ').includes('home-hero'))[0]
+  const images = elements(hero, (node) => node.tagName === 'img')
+  assert.equal(images.length, 1, 'Do not download the entire slideshow on first render')
+  assert.equal(attribute(images[0], 'src'), photos.charcoalTable.src)
+  assert.equal(attribute(images[0], 'fetchpriority'), 'high')
+  const allowed = Object.values(photos).map((photo) => photo.src)
+  assert.equal(new Set(heroSlides.map((slide) => slide.photo.src)).size, heroSlides.length)
+  for (const slide of heroSlides) {
+    assert.ok(allowed.includes(slide.photo.src))
+    await access(new URL(`../dist${slide.photo.src}`, import.meta.url))
+    if (slide.mobilePhoto) assert.ok(allowed.includes(slide.mobilePhoto.src))
+  }
+  assert.equal(heroIntervalMs, 6000)
+  assert.equal(heroSlideIndex(-1), heroSlides.length - 1)
+  assert.equal(heroSlideIndex(heroSlides.length), 0)
+  assert.equal(heroSlideIndex(2 * heroSlides.length + 1), 1)
 })
 
 test('Menu: offers and portions match the visible menu data', async () => {

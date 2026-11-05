@@ -1,6 +1,7 @@
 import { ArrowRight, CalendarCheck, MessageCircle, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import BusinessStatus from '../components/BusinessStatus'
+import HeroSlideshow from '../components/HeroSlideshow'
 import NaverMap from '../components/NaverMap'
 import { homeFaqItems } from '../data/faqs'
 import { homeMeta } from '../data/seo'
@@ -19,16 +20,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <section className="home-hero" aria-labelledby="home-title">
-        <picture className="home-hero__visual">
-          <source media="(max-width: 700px)" srcSet={photos.porkGalbi.src} />
-          <img
-            className="home-hero__photo"
-            {...photos.charcoalTable}
-            alt="하늘땅의 숯불갈비와 곁들임 반찬"
-            fetchPriority="high"
-          />
-        </picture>
+      <HeroSlideshow>
         <div className="container home-hero__content">
           <h1 id="home-title"><span>백년가업</span>하늘땅</h1>
           <p className="home-hero__location">진해 경화동 · 숯불갈비</p>
@@ -37,7 +29,7 @@ export default function Home() {
             <a href={store.naverBookingUrl} target="_blank" rel="noreferrer">네이버 예약 <ArrowRight aria-hidden="true" size={20} /></a>
           </div>
         </div>
-      </section>
+      </HeroSlideshow>
 
       <div className="home-hours">
         <div className="container home-hours__inner">

@@ -12,6 +12,7 @@ export { store } from './data/store'
 export { menuItems } from './data/menu'
 export { faqItems } from './data/faqs'
 export { photos } from './data/photos'
+export { heroSlides, heroSlideIndex, HERO_INTERVAL_MS as heroIntervalMs } from './data/heroSlides'
 
 export async function render(path: string) {
   const metadata: RenderMetadata = { structuredData: new Map() }
