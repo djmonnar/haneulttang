@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
-import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
+import { Pause, Play } from 'lucide-react'
 import { HERO_INTERVAL_MS, heroSlideIndex, heroSlides } from '../data/heroSlides'
 
 function imageUrl(index: number) {
@@ -23,7 +23,6 @@ export default function HeroSlideshow({ children }: { children: ReactNode }) {
   const [active, setActive] = useState(0)
   const [previous, setPrevious] = useState<number | null>(null)
   const [playing, setPlaying] = useState(true)
-  const [hovered, setHovered] = useState(false)
   const [visible, setVisible] = useState(true)
   const [inView, setInView] = useState(true)
   const [ready, setReady] = useState(false)
@@ -44,7 +43,7 @@ export default function HeroSlideshow({ children }: { children: ReactNode }) {
     } catch {
       if (navigation.current !== request) return
       setPlaying(false)
-      setError('사진을 불러오지 못했습니다. 다른 사진을 선택해 주세요.')
+      setError('사진을 불러오지 못해 자동 전환을 멈췄습니다.')
     }
   }, [active])
 
@@ -80,15 +79,10 @@ export default function HeroSlideshow({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    if (!ready || !playing || hovered || !visible || !inView) return
+    if (!ready || !playing || !visible || !inView) return
     const timer = window.setTimeout(() => { void showPhoto(active + 1) }, HERO_INTERVAL_MS)
     return () => window.clearTimeout(timer)
-  }, [active, ready, playing, hovered, visible, inView, showPhoto])
-
-  const selectPhoto = (offset: number) => {
-    setPlaying(false)
-    void showPhoto(active + offset)
-  }
+  }, [active, ready, playing, visible, inView, showPhoto])
 
   return (
     <section
@@ -96,12 +90,6 @@ export default function HeroSlideshow({ children }: { children: ReactNode }) {
       className="home-hero"
       aria-labelledby="home-title"
       aria-roledescription="사진 슬라이드"
-      onPointerEnter={(event) => {
-        if (event.pointerType !== 'mouse') return
-        navigation.current += 1
-        setHovered(true)
-      }}
-      onPointerLeave={(event) => { if (event.pointerType === 'mouse') setHovered(false) }}
       onFocusCapture={(event) => {
         if (!(event.target as HTMLElement).closest('[data-rotation-control]')) {
           navigation.current += 1
@@ -127,22 +115,18 @@ export default function HeroSlideshow({ children }: { children: ReactNode }) {
       </div>
       {children}
       {ready && (
-        <div className="home-hero__controls" role="group" aria-label="사진 전환">
-          <span className="home-hero__counter" aria-hidden="true">{String(active + 1).padStart(2, '0')}<span> / {String(heroSlides.length).padStart(2, '0')}</span></span>
-          <button type="button" title="이전 사진" aria-label="이전 사진" onClick={() => selectPhoto(-1)}><ChevronLeft aria-hidden="true" size={18} /></button>
-          <button
-            type="button"
-            data-rotation-control
-            title={playing ? '사진 자동 전환 일시정지' : '사진 자동 전환 재생'}
-            aria-label={playing ? '사진 자동 전환 일시정지' : '사진 자동 전환 재생'}
-            onClick={() => { navigation.current += 1; setPlaying(!playing) }}
-          >
-            {playing ? <Pause aria-hidden="true" size={15} /> : <Play aria-hidden="true" size={15} />}
-          </button>
-          <button type="button" title="다음 사진" aria-label="다음 사진" onClick={() => selectPhoto(1)}><ChevronRight aria-hidden="true" size={18} /></button>
-        </div>
+        <button
+          className="home-hero__pause"
+          type="button"
+          data-rotation-control
+          title={playing ? '사진 자동 전환 일시정지' : '사진 자동 전환 재생'}
+          aria-label={playing ? '사진 자동 전환 일시정지' : '사진 자동 전환 재생'}
+          onClick={() => { navigation.current += 1; setPlaying(!playing) }}
+        >
+          {playing ? <Pause aria-hidden="true" size={18} /> : <Play aria-hidden="true" size={18} />}
+        </button>
       )}
-      {error && <p className="sr-only" role="status">{error}</p>}
+      {error && <p className="home-hero__status" role="status">{error}</p>}
     </section>
   )
 }

@@ -1,6 +1,6 @@
 import { photos } from './photos'
 
-export const HERO_INTERVAL_MS = 6000
+export const HERO_INTERVAL_MS = 3500
 
 export const heroSlides = [
   { id: 'table', photo: photos.charcoalTable, mobilePhoto: photos.porkGalbi, position: 'center 52%', mobilePosition: '50% 50%' },

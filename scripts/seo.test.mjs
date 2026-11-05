@@ -110,7 +110,7 @@ test('Home: slideshow keeps the first photo in static HTML and only uses supplie
     await access(new URL(`../dist${slide.photo.src}`, import.meta.url))
     if (slide.mobilePhoto) assert.ok(allowed.includes(slide.mobilePhoto.src))
   }
-  assert.equal(heroIntervalMs, 6000)
+  assert.equal(heroIntervalMs, 3500)
   assert.equal(heroSlideIndex(-1), heroSlides.length - 1)
   assert.equal(heroSlideIndex(heroSlides.length), 0)
   assert.equal(heroSlideIndex(2 * heroSlides.length + 1), 1)
