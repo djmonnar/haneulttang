@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs && node --test scripts/seo.test.mjs",
+    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs && node --test scripts/seo.test.mjs scripts/naver-tracking.test.mjs",
     "test:seo": "node --test scripts/seo.test.mjs",
+    "test:tracking": "node --test scripts/naver-tracking.test.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },

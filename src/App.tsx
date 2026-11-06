@@ -7,6 +7,7 @@ import ScrollToTop from './components/ScrollToTop'
 import ScrollReveal from './components/ScrollReveal'
 import Home from './pages/Home'
 import SiteStructuredData from './components/SiteStructuredData'
+import NaverAnalytics from './components/NaverAnalytics'
 
 const Brand = lazy(() => import('./pages/Brand'))
 const Greeting = lazy(() => import('./pages/Greeting'))
@@ -26,6 +27,7 @@ export default function App() {
   return (
     <>
       <SiteStructuredData />
+      <NaverAnalytics />
       <ScrollToTop />
       <ScrollReveal />
       <Header />
